@@ -1,9 +1,13 @@
 import Header from 'components/Layout/Header';
+import React, { Fragment } from 'react';
 
-export default function MainLayout() {
+const Layout: React.FC = ({ children }) => {
   return (
-    <>
+    <Fragment>
       <Header />
-    </>
+      <main>{children}</main>
+    </Fragment>
   );
-}
+};
+
+export default Layout;

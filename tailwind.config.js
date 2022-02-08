@@ -1,6 +1,6 @@
 module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx,mdx}', './components/**/*.{js,ts,jsx,tsx,mdx}'],
-  darkMode: 'media',
+  darkMode: 'class',
   theme: {
     colors: require('./constants/tailwindColors'),
     fontSize: {

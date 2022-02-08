@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import ThemeToggle from 'components/Button/ThemeToggle';
 import { useScrolled } from 'hooks';
 import Image from 'next/image';
 import React, { memo } from 'react';
@@ -20,9 +21,7 @@ const Header: React.FC = () => {
           <HeaderNavItem>github</HeaderNavItem>
         </ul>
       </div>
-      {/* <button className="relative w-[24px] h-[24px]">
-        <Image src="/assets/sun.svg" layout="fill" />
-      </button> */}
+      <ThemeToggle />
     </header>
   );
 };
