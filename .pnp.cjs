@@ -193,6 +193,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["regenerator-runtime", "npm:0.13.9"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:7.17.2", {
+          "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.17.2-ec60bc114d-a48702d271.zip/node_modules/@babel/runtime/",
+          "packageDependencies": [
+            ["@babel/runtime", "npm:7.17.2"],
+            ["regenerator-runtime", "npm:0.13.9"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@babel/runtime-corejs3", [
@@ -611,6 +619,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/parse-json", [
+        ["npm:4.0.0", {
+          "packageLocation": "./.yarn/cache/@types-parse-json-npm-4.0.0-298522afa6-fd6bce2b67.zip/node_modules/@types/parse-json/",
+          "packageDependencies": [
+            ["@types/parse-json", "npm:4.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/prettier", [
         ["npm:2.4.3", {
           "packageLocation": "./.yarn/cache/@types-prettier-npm-2.4.3-59302580e6-b240434daa.zip/node_modules/@types/prettier/",
@@ -963,6 +980,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["babel-plugin-macros", [
+        ["npm:3.1.0", {
+          "packageLocation": "./.yarn/cache/babel-plugin-macros-npm-3.1.0-320e781f4e-765de4abeb.zip/node_modules/babel-plugin-macros/",
+          "packageDependencies": [
+            ["babel-plugin-macros", "npm:3.1.0"],
+            ["@babel/runtime", "npm:7.17.2"],
+            ["cosmiconfig", "npm:7.0.1"],
+            ["resolve", "patch:resolve@npm%3A1.22.0#~builtin<compat/resolve>::version=1.22.0&hash=07638b"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["babel-plugin-styled-components", [
         ["npm:2.0.3", {
           "packageLocation": "./.yarn/cache/babel-plugin-styled-components-npm-2.0.3-3a40ca7688-7fe2d5f4c8.zip/node_modules/babel-plugin-styled-components/",
@@ -1203,6 +1232,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["cosmiconfig", [
+        ["npm:7.0.1", {
+          "packageLocation": "./.yarn/cache/cosmiconfig-npm-7.0.1-dd19ae2403-4be63e7117.zip/node_modules/cosmiconfig/",
+          "packageDependencies": [
+            ["cosmiconfig", "npm:7.0.1"],
+            ["@types/parse-json", "npm:4.0.0"],
+            ["import-fresh", "npm:3.3.0"],
+            ["parse-json", "npm:5.2.0"],
+            ["path-type", "npm:4.0.0"],
+            ["yaml", "npm:1.10.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["cross-spawn", [
         ["npm:7.0.3", {
           "packageLocation": "./.yarn/cache/cross-spawn-npm-7.0.3-e4ff3e65b3-671cc7c728.zip/node_modules/cross-spawn/",
@@ -1389,6 +1432,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/emoji-regex-npm-9.2.2-e6fac8d058-8487182da7.zip/node_modules/emoji-regex/",
           "packageDependencies": [
             ["emoji-regex", "npm:9.2.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["error-ex", [
+        ["npm:1.3.2", {
+          "packageLocation": "./.yarn/cache/error-ex-npm-1.3.2-5654f80c0f-c1c2b8b65f.zip/node_modules/error-ex/",
+          "packageDependencies": [
+            ["error-ex", "npm:1.3.2"],
+            ["is-arrayish", "npm:0.2.1"]
           ],
           "linkType": "HARD",
         }]
@@ -2313,6 +2366,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["is-arrayish", [
+        ["npm:0.2.1", {
+          "packageLocation": "./.yarn/cache/is-arrayish-npm-0.2.1-23927dfb15-eef4417e3c.zip/node_modules/is-arrayish/",
+          "packageDependencies": [
+            ["is-arrayish", "npm:0.2.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["is-bigint", [
         ["npm:1.0.4", {
           "packageLocation": "./.yarn/cache/is-bigint-npm-1.0.4-31c2eecbc9-c56edfe09b.zip/node_modules/is-bigint/",
@@ -2573,6 +2635,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["json-parse-even-better-errors", [
+        ["npm:2.3.1", {
+          "packageLocation": "./.yarn/cache/json-parse-even-better-errors-npm-2.3.1-144d62256e-798ed4cf33.zip/node_modules/json-parse-even-better-errors/",
+          "packageDependencies": [
+            ["json-parse-even-better-errors", "npm:2.3.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["json-schema-traverse", [
         ["npm:0.4.1", {
           "packageLocation": "./.yarn/cache/json-schema-traverse-npm-0.4.1-4759091693-7486074d3b.zip/node_modules/json-schema-traverse/",
@@ -2647,6 +2718,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["levn", "npm:0.4.1"],
             ["prelude-ls", "npm:1.2.1"],
             ["type-check", "npm:0.4.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["lines-and-columns", [
+        ["npm:1.2.4", {
+          "packageLocation": "./.yarn/cache/lines-and-columns-npm-1.2.4-d6c7cc5799-0c37f9f7fa.zip/node_modules/lines-and-columns/",
+          "packageDependencies": [
+            ["lines-and-columns", "npm:1.2.4"]
           ],
           "linkType": "HARD",
         }]
@@ -3120,6 +3200,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["is-alphanumerical", "npm:1.0.4"],
             ["is-decimal", "npm:1.0.4"],
             ["is-hexadecimal", "npm:1.0.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["parse-json", [
+        ["npm:5.2.0", {
+          "packageLocation": "./.yarn/cache/parse-json-npm-5.2.0-00a63b1199-62085b17d6.zip/node_modules/parse-json/",
+          "packageDependencies": [
+            ["parse-json", "npm:5.2.0"],
+            ["@babel/code-frame", "npm:7.16.7"],
+            ["error-ex", "npm:1.3.2"],
+            ["json-parse-even-better-errors", "npm:2.3.1"],
+            ["lines-and-columns", "npm:1.2.4"]
           ],
           "linkType": "HARD",
         }]
@@ -3734,12 +3827,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react", "npm:17.0.39"],
             ["@types/react-dom", "npm:17.0.11"],
             ["@types/react-is", null],
+            ["babel-plugin-macros", "npm:3.1.0"],
             ["babel-plugin-styled-components", "virtual:773d57e38894dc439e85e405f2a4f976597656272258cc5fe2d90c2e7e9c96e2b857976abeb5e81f82f43d736fa9823d3722cdf0fc29de3448b5a70d6c2734ae#npm:2.0.3"],
             ["css-to-react-native", "npm:3.0.0"],
             ["hoist-non-react-statics", "npm:3.3.2"],
             ["react", "npm:17.0.2"],
             ["react-dom", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:17.0.2"],
-            ["react-is", null],
+            ["react-is", "npm:17.0.2"],
             ["shallowequal", "npm:1.1.0"],
             ["supports-color", "npm:5.5.0"]
           ],
@@ -3748,7 +3842,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/react-is",
             "@types/react",
             "react-dom",
-            "react-is",
             "react"
           ],
           "linkType": "HARD",
@@ -4140,6 +4233,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/yallist-npm-4.0.0-b493d9e907-343617202a.zip/node_modules/yallist/",
           "packageDependencies": [
             ["yallist", "npm:4.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["yaml", [
+        ["npm:1.10.2", {
+          "packageLocation": "./.yarn/cache/yaml-npm-1.10.2-0e780aebdf-ce4ada136e.zip/node_modules/yaml/",
+          "packageDependencies": [
+            ["yaml", "npm:1.10.2"]
           ],
           "linkType": "HARD",
         }]
