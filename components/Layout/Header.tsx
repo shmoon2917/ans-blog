@@ -11,7 +11,7 @@ const Header: React.FC = () => {
   return (
     <Styles.Wrapper scrolled={scrolled}>
       <Styles.LeftSectionWrapper>
-        <Image src="/assets/logo.svg" width="152" height="27" alt="logo" />
+        <Image src="/assets/logo.svg" layout="fixed" width="152" height="27" alt="logo" />
         <Styles.NavWrapper>
           <Styles.NavItem>resume</Styles.NavItem>
           <Styles.NavItem>github</Styles.NavItem>

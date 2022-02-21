@@ -27,7 +27,7 @@ const ThemeToggle: React.FC = () => {
   return (
     <Wrapper onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}>
       {renderIcon()}
-      <Image src="/assets/sun.svg" layout="fill" alt="Turn into the dark mode" />
+      <Image src="/assets/sun.svg" layout="fill" alt={`Turn into the ${resolvedTheme === 'light' ? 'dark' : 'light'} mode`} />
     </Wrapper>
   );
 };
