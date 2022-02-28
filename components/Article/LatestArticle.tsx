@@ -1,7 +1,7 @@
 import { Typos } from 'components/Typo';
 import { STYLES } from 'services/constants';
 import styled from 'styled-components';
-import { SpaceX } from 'styles/mixin';
+import { SpaceX } from 'styles/theme';
 
 interface LatestArticleProps {
   category: string;

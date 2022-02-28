@@ -1,6 +1,6 @@
 import { STYLES } from 'services/constants';
 import styled, { css } from 'styled-components';
-import { SpaceX } from 'styles/mixin';
+import { SpaceX } from 'styles/theme';
 
 export const Wrapper = styled.header<{ scrolled: boolean }>`
   position: fixed;

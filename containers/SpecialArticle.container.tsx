@@ -4,7 +4,7 @@ import SpecialArticleTitle from 'components/Article/SpecialArticleTitle';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { STYLES } from 'services/constants';
 import styled, { css } from 'styled-components';
-import { SpaceX } from 'styles/mixin';
+import { SpaceX } from 'styles/theme';
 import SpecialArticle from '../components/Article/SpecialArticle';
 
 export default function SpecialArticles() {

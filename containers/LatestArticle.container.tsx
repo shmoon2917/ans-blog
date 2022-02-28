@@ -2,7 +2,7 @@ import LatestArticle from 'components/Article/LatestArticle';
 import { Typos } from 'components/Typo';
 import { STYLES } from 'services/constants';
 import styled from 'styled-components';
-import { SpaceY } from 'styles/mixin';
+import { SpaceY } from 'styles/theme';
 
 export default function LatestArticles() {
   return (
