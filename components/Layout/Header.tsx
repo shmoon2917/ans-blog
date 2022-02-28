@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React, { memo } from 'react';
 
 import * as Styles from './Header.styles';
+import Link from 'next/link';
 
 const Header: React.FC = () => {
   const scrolled = useScrolled();
@@ -11,10 +12,16 @@ const Header: React.FC = () => {
   return (
     <Styles.Wrapper scrolled={scrolled}>
       <Styles.LeftSectionWrapper>
-        <Image src="/assets/logo.svg" layout="fixed" width="152" height="27" alt="logo" />
+        <Styles.LogoWrapper>
+          <Image src="/assets/logo.svg" layout="fill" alt="logo" priority />
+        </Styles.LogoWrapper>
         <Styles.NavWrapper>
-          <Styles.NavItem>resume</Styles.NavItem>
-          <Styles.NavItem>github</Styles.NavItem>
+          <Styles.NavItem>
+            <Link href="https://lavish-rhubarb-8f1.notion.site/cc2b37fb6fc34290987bd950cf4ceecb">resume</Link>
+          </Styles.NavItem>
+          <Styles.NavItem>
+            <Link href="https://github.com/shmoon2917">github</Link>
+          </Styles.NavItem>
         </Styles.NavWrapper>
       </Styles.LeftSectionWrapper>
       <ThemeToggleButton />

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Heading1 = styled.h1`
   font-size: 40px;
@@ -64,4 +64,32 @@ export const BlockQuotes = styled.blockquote`
   font-weight: semi-bold;
   font-size: 20;
   line-height: 28px;
+`;
+
+export const Label = styled.span<{ type: 'small' | 'medium' | 'large' }>`
+  font-weight: normal;
+
+  ${({ type }) => {
+    switch (type) {
+      case 'small':
+        return css`
+          font-size: 10px;
+          line-height: 14px;
+          letter-spacing: 0.2px;
+        `;
+      case 'medium':
+        return css`
+          font-size: 12px;
+          line-height: 16px;
+          letter-spacing: 0.2px;
+        `;
+      case 'large':
+        return css`
+          font-size: 14px;
+          line-height: 24px;
+        `;
+      default:
+        return;
+    }
+  }}
 `;

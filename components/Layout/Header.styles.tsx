@@ -10,7 +10,11 @@ export const Wrapper = styled.header<{ scrolled: boolean }>`
   justify-content: space-between;
   align-items: center;
 
-  padding: 20px 40px;
+  padding: 20px ${STYLES.paddings.default}px;
+  ${STYLES.media.mobile} {
+    padding: 20px ${STYLES.paddings.mobile}px;
+  }
+
   background-color: white;
   backdrop-filter: blur(40px);
 
@@ -25,8 +29,25 @@ export const Wrapper = styled.header<{ scrolled: boolean }>`
 export const LeftSectionWrapper = styled.div`
   display: flex;
   align-items: center;
-  > * + * {
+  > * ~ * {
     margin-left: 25px;
+  }
+
+  ${STYLES.media.mobile} {
+    > * ~ * {
+      margin-left: 15px;
+    }
+  }
+`;
+
+export const LogoWrapper = styled.div`
+  position: relative;
+  width: 152px;
+  height: 27px;
+
+  ${STYLES.media.mobile} {
+    width: 130px;
+    height: 23px;
   }
 `;
 
@@ -36,9 +57,21 @@ export const NavWrapper = styled.ul`
   > * + * {
     margin-left: 25px;
   }
+
+  ${STYLES.media.mobile} {
+    > * ~ * {
+      margin-left: 15px;
+    }
+  }
 `;
 
 export const NavItem = styled.li`
+  cursor: pointer;
   color: ${STYLES.colors.dark2};
   font-family: ${STYLES.fonts.msa};
+  transition: color ease-out 300ms;
+
+  &:hover {
+    color: ${STYLES.colors.dark3};
+  }
 `;

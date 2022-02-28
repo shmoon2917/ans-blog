@@ -67,6 +67,10 @@ export const STYLES = {
     '5xl': '3.5rem',
     '6xl': '4rem',
   },
+  paddings: {
+    mobile: 20,
+    default: 40,
+  },
   shadows: {
     lightEl1Inset: 'inset 0px 0.5px 4px 0px rgba(96,97,112,0.32)',
     lightEl0Base: '0px 0px 0px 0px rgba(0,0,0,0)',
@@ -84,5 +88,10 @@ export const STYLES = {
     darkEl4: '0px 8px 16px 0px rgba(0,0,0,0.32), 0px 2px 4px 0px rgba(0,0,0,0.04)',
     darkEl5: '0px 16px 24px 0px rgba(0,0,0,0.32), 0px 2px 8px 0px rgba(0,0,0,0.04)',
     darkEl6: '0px 20px 32px 0px rgba(0,0,0,0.32), 0px 2px 8px 0px rgba(0,0,0,0.08)',
+  },
+  media: {
+    mobile: '@media screen and (max-width:767px)' as const,
+    tablet: '@media screen and (max-width:1279px)' as const,
+    pc: '@media screen and (max-width:1440px)' as const,
   },
 } as const;
