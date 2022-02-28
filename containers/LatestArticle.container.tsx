@@ -1,16 +1,28 @@
 import LatestArticle from 'components/Article/LatestArticle';
 import { Typos } from 'components/Typo';
+import Link from 'next/link';
 import { STYLES } from 'services/constants';
+import { Post } from 'services/types';
 import styled from 'styled-components';
 import { SpaceY } from 'styles/theme';
 
-export default function LatestArticles() {
+interface LatestArticlsProps {
+  posts: Post[];
+}
+
+export default function LatestArticles({ posts }: LatestArticlsProps) {
   return (
     <LatestArticlesContainer>
       <Typos.Label type="large" style={{ color: STYLES.colors.dark2 }}>
         최신 아티클
       </Typos.Label>
-      <LatestArticle title="블로그 만들자" category="개발" createdAt="2022. 02. 28" />
+      {posts?.map(({ slug, date, title, category }) => (
+        <Link href={`/posts/${slug}`} key={slug}>
+          <a>
+            <LatestArticle title={title} category={category} createdAt={date} />
+          </a>
+        </Link>
+      ))}
     </LatestArticlesContainer>
   );
 }
