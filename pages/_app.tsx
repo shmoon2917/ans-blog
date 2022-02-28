@@ -23,8 +23,12 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       <ThemeProvider attribute="class">
         <Head>
           <title>ANS blog</title>
-          <meta name="description" content={`frontend developer ans's blog`} />
+          <meta name="description" content="frontend developer ans's blog" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <meta name="author" content="Sangho Moon" />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content="ansblog" />
+          <meta property="og:description" content="frontend developer ans's blog" />
         </Head>
         {getLayout(<Component {...pageProps} />)}
       </ThemeProvider>
