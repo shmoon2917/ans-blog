@@ -1,5 +1,6 @@
 import { STYLES } from 'services/constants';
 import styled, { css } from 'styled-components';
+import { SpaceX } from 'styles/mixin';
 
 export const Wrapper = styled.header<{ scrolled: boolean }>`
   position: fixed;
@@ -29,14 +30,10 @@ export const Wrapper = styled.header<{ scrolled: boolean }>`
 export const LeftSectionWrapper = styled.div`
   display: flex;
   align-items: center;
-  > * ~ * {
-    margin-left: 25px;
-  }
 
+  ${SpaceX(25)}
   ${STYLES.media.mobile} {
-    > * ~ * {
-      margin-left: 15px;
-    }
+    ${SpaceX(15)}
   }
 `;
 
@@ -54,14 +51,10 @@ export const LogoWrapper = styled.div`
 export const NavWrapper = styled.ul`
   display: flex;
   font-size: 16px;
-  > * + * {
-    margin-left: 25px;
-  }
 
+  ${SpaceX(25)}
   ${STYLES.media.mobile} {
-    > * ~ * {
-      margin-left: 15px;
-    }
+    ${SpaceX(15)}
   }
 `;
 

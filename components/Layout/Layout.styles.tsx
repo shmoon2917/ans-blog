@@ -1,5 +1,6 @@
 import { STYLES } from 'services/constants';
 import styled from 'styled-components';
+import { SpaceX } from 'styles/mixin';
 
 export const ContentsWrapper = styled.main`
   max-width: 1140px;
@@ -9,9 +10,7 @@ export const ContentsWrapper = styled.main`
   margin-top: 80px;
 
   ${STYLES.media.mobile} {
-    > * ~ * {
-      margin-left: 64px;
-    }
+    margin-top: 64px;
   }
 
   display: flex;

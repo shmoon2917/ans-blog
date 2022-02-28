@@ -30,6 +30,12 @@ export const Heading5 = styled.h1`
   line-height: 28px;
 `;
 
+export const Heading6 = styled.h1`
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+`;
+
 export const Lead = styled.p`
   font-weight: 400;
   font-size: 14;

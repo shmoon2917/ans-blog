@@ -1,8 +1,10 @@
+import { SpecialArticleWrapper } from 'components/Article/SpecialArticle.styles';
 import SpecialArticleImage from 'components/Article/SpecialArticleImage';
 import SpecialArticleTitle from 'components/Article/SpecialArticleTitle';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { STYLES } from 'services/constants';
 import styled, { css } from 'styled-components';
+import { SpaceX } from 'styles/mixin';
 import SpecialArticle from '../components/Article/SpecialArticle';
 
 export default function SpecialArticles() {
@@ -47,6 +49,26 @@ export default function SpecialArticles() {
           <SpecialArticleImage src="/assets/example.png" alt="토스" />
           <SpecialArticleTitle>예시</SpecialArticleTitle>
         </SpecialArticle>
+        <SpecialArticle>
+          <SpecialArticleImage src="/assets/example.png" alt="토스" />
+          <SpecialArticleTitle>예시</SpecialArticleTitle>
+        </SpecialArticle>
+        <SpecialArticle>
+          <SpecialArticleImage src="/assets/example.png" alt="토스" />
+          <SpecialArticleTitle>예시</SpecialArticleTitle>
+        </SpecialArticle>
+        <SpecialArticle>
+          <SpecialArticleImage src="/assets/example.png" alt="토스" />
+          <SpecialArticleTitle>예시</SpecialArticleTitle>
+        </SpecialArticle>
+        <SpecialArticle>
+          <SpecialArticleImage src="/assets/example.png" alt="토스" />
+          <SpecialArticleTitle>예시</SpecialArticleTitle>
+        </SpecialArticle>
+        <SpecialArticle>
+          <SpecialArticleImage src="/assets/example.png" alt="토스" />
+          <SpecialArticleTitle>예시</SpecialArticleTitle>
+        </SpecialArticle>
       </ScrollArea>
       <ScrollShadow type="left" hidden={!scrolledLeft} />
       <ScrollShadow type="right" hidden={!scrolledRight} />
@@ -64,21 +86,29 @@ const ScrollArea = styled.div`
   position: relative;
 
   overflow: scroll;
-  width: 100%;
-  padding: 12px ${STYLES.paddings.default}px ${STYLES.paddings.default}px;
   box-sizing: border-box;
 
-  > * ~ * {
-    margin-left: 20px;
+  width: 100%;
+  padding: 12px ${STYLES.paddings.default}px ${STYLES.paddings.default}px;
+
+  a:last-child > ${SpecialArticleWrapper} {
+    margin-right: ${STYLES.paddings.default}px;
   }
+
+  ${SpaceX(20)}
 
   ${STYLES.media.mobile} {
     padding: 12px ${STYLES.paddings.mobile}px ${STYLES.paddings.mobile}px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    &::-webkit-scrollbar {
-      display: none;
+
+    a:last-child > ${SpecialArticleWrapper} {
+      margin-right: ${STYLES.paddings.mobile}px;
     }
+  }
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 `;
 
