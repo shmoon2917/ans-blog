@@ -7,6 +7,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "babel-plugin-styled-components": "^2.0.6",
     "date-fns": "2.21.3",
     "gray-matter": "4.0.3",
     "next": "latest",
