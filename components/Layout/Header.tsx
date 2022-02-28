@@ -17,10 +17,14 @@ const Header: React.FC = () => {
         </Styles.LogoWrapper>
         <Styles.NavWrapper>
           <Styles.NavItem>
-            <Link href="https://lavish-rhubarb-8f1.notion.site/cc2b37fb6fc34290987bd950cf4ceecb">resume</Link>
+            <a href="https://lavish-rhubarb-8f1.notion.site/cc2b37fb6fc34290987bd950cf4ceecb" target="_blank" rel="noreferrer">
+              resume
+            </a>
           </Styles.NavItem>
           <Styles.NavItem>
-            <Link href="https://github.com/shmoon2917">github</Link>
+            <a href="https://github.com/shmoon2917" target="_blank" rel="noreferrer">
+              github
+            </a>
           </Styles.NavItem>
         </Styles.NavWrapper>
       </Styles.LeftSectionWrapper>
