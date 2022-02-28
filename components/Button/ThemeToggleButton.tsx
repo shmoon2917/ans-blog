@@ -1,33 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import styled from 'styled-components';
 
 const ThemeToggle: React.FC = () => {
   const { resolvedTheme, setTheme } = useTheme();
+  const [src, setSrc] = useState('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
 
-  const renderIcon = () => {
-    let src = '';
-
+  useEffect(() => {
     switch (resolvedTheme) {
       case 'light':
-        src = '/assets/sun.svg';
+        setSrc('/assets/sun.svg');
         break;
       case 'dark':
-        src = '/assets/moon.svg';
+        setSrc('/assets/moon.svg');
         break;
       default:
-        src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
         break;
     }
-
-    <Image src={src} layout="fill" alt={`Turn into the ${resolvedTheme} mode`} />;
-  };
+  }, [resolvedTheme]);
 
   return (
     <Wrapper onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}>
-      {renderIcon()}
-      <Image src="/assets/sun.svg" layout="fill" alt={`Turn into the ${resolvedTheme === 'light' ? 'dark' : 'light'} mode`} />
+      <Image src={src} layout="fill" alt="theme-toggle-button" />
     </Wrapper>
   );
 };
