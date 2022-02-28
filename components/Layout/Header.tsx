@@ -12,9 +12,12 @@ const Header: React.FC = () => {
   return (
     <Styles.Wrapper scrolled={scrolled}>
       <Styles.LeftSectionWrapper>
-        <Styles.LogoWrapper>
-          <Image src="/assets/logo.svg" layout="fill" alt="logo" priority />
-        </Styles.LogoWrapper>
+        <Link href="/" passHref>
+          <Styles.LogoWrapper>
+            <Image src="/assets/logo.svg" layout="fill" alt="logo" priority />
+          </Styles.LogoWrapper>
+        </Link>
+
         <Styles.NavWrapper>
           <Styles.NavItem>
             <a href="https://lavish-rhubarb-8f1.notion.site/cc2b37fb6fc34290987bd950cf4ceecb" target="_blank" rel="noreferrer">

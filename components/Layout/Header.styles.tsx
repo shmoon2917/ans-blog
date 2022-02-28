@@ -41,6 +41,7 @@ export const LogoWrapper = styled.div`
   position: relative;
   width: 152px;
   height: 27px;
+  cursor: pointer;
 
   ${STYLES.media.mobile} {
     width: 130px;

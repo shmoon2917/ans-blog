@@ -4,7 +4,6 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'next-themes';
 
-import Layout from 'components/Layout/Layout';
 import { GlobalStyle } from 'styles/globalStyles';
 
 type NextPageWithLayout = NextPage & {
