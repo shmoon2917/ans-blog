@@ -17,9 +17,12 @@ export default function LatestArticles() {
 
 const LatestArticlesContainer = styled.section`
   ${SpaceY(12)}
-  padding: 12px 0 ${STYLES.paddings.default}px ${STYLES.paddings.default}px;
+  padding: 12px ${STYLES.paddings.default}px;
+  margin: 0 auto;
+  max-width: 1140px;
+  box-sizing: border-box;
 
   ${STYLES.media.mobile} {
-    padding: 12px 0 ${STYLES.paddings.mobile}px ${STYLES.paddings.mobile}px;
+    padding: 12px ${STYLES.paddings.mobile}px;
   }
 `;

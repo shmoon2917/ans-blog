@@ -88,9 +88,14 @@ const ScrollArea = styled.div`
   overflow: scroll;
   box-sizing: border-box;
 
+  @media (max-width: 1140px) {
+    justify-content: flex-start;
+  }
+
   width: 100%;
   padding: 12px ${STYLES.paddings.default}px ${STYLES.paddings.default}px;
 
+  /** Safari Scroll Padding Issue */
   a:last-child > ${SpecialArticleWrapper} {
     margin-right: ${STYLES.paddings.default}px;
   }
