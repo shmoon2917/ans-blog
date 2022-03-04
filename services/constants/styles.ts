@@ -1,5 +1,5 @@
 export const STYLES = {
-  colors: {
+  color: {
     primaryDefault: '#3e7bfa',
     primaryDarker: '#3568d4',
     primaryLighter: '#6698fa',
@@ -50,11 +50,11 @@ export const STYLES = {
     purple3: '#dda5e9',
     purple4: '#ffe5ff',
   },
-  fonts: {
+  font: {
     pretendard: 'Pretendard, apple-system, sans-serif',
     msa: 'Montserrat Alternates, apple-system, sans-serif',
   },
-  fontSizes: {
+  fontSize: {
     '2xs': '0.625rem',
     xs: '0.75rem',
     sm: '0.875rem',
@@ -67,11 +67,11 @@ export const STYLES = {
     '5xl': '3.5rem',
     '6xl': '4rem',
   },
-  paddings: {
+  padding: {
     mobile: 20,
     default: 40,
   },
-  shadows: {
+  shadow: {
     lightEl1Inset: 'inset 0px 0.5px 4px 0px rgba(96,97,112,0.32)',
     lightEl0Base: '0px 0px 0px 0px rgba(0,0,0,0)',
     lightEl1: '0px 0.5px 2px 0px rgba(96,97,112,0.16), 0px 0px 1px 0px rgba(40,41,61,0.08)',

@@ -11,7 +11,7 @@ export const SpecialArticleWrapper = styled.article`
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: ${STYLES.shadows.lightEl6};
+    box-shadow: ${STYLES.shadow.lightEl6};
   }
 `;
 

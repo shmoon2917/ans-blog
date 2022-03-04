@@ -93,20 +93,20 @@ const ScrollArea = styled.div`
   }
 
   width: 100%;
-  padding: 12px ${STYLES.paddings.default}px ${STYLES.paddings.default}px;
+  padding: 12px ${STYLES.padding.default}px ${STYLES.padding.default}px;
 
   /** Safari Scroll Padding Issue */
   a:last-child > ${SpecialArticleWrapper} {
-    margin-right: ${STYLES.paddings.default}px;
+    margin-right: ${STYLES.padding.default}px;
   }
 
   ${SpaceX(20)}
 
   ${STYLES.media.mobile} {
-    padding: 12px ${STYLES.paddings.mobile}px ${STYLES.paddings.mobile}px;
+    padding: 12px ${STYLES.padding.mobile}px ${STYLES.padding.mobile}px;
 
     a:last-child > ${SpecialArticleWrapper} {
-      margin-right: ${STYLES.paddings.mobile}px;
+      margin-right: ${STYLES.padding.mobile}px;
     }
   }
 

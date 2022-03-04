@@ -14,11 +14,11 @@ const LatestArticle: React.FC<LatestArticleProps> = ({ category, createdAt, titl
   return (
     <LatestArticleContainer>
       <DescriptionArea>
-        <Typos.Label type="large" style={{ color: STYLES.colors.dark3 }}>
+        <Typos.Label type="large" style={{ color: STYLES.color.dark3 }}>
           {category}
         </Typos.Label>
         <Divider />
-        <Typos.Label type="large" style={{ color: STYLES.colors.dark3 }}>
+        <Typos.Label type="large" style={{ color: STYLES.color.dark3 }}>
           {format(new Date(createdAt), 'yyyy년 M월 d일')}
         </Typos.Label>
       </DescriptionArea>
@@ -43,7 +43,7 @@ const LatestArticleContainer = styled.article`
 const Divider = styled.div`
   width: 1px;
   height: 8px;
-  background: ${STYLES.colors.light0};
+  background: ${STYLES.color.light0};
 `;
 
 const DescriptionArea = styled.div`

@@ -11,9 +11,9 @@ export const Wrapper = styled.header<{ scrolled: boolean }>`
   justify-content: space-between;
   align-items: center;
 
-  padding: 20px ${STYLES.paddings.default}px;
+  padding: 20px ${STYLES.padding.default}px;
   ${STYLES.media.mobile} {
-    padding: 20px ${STYLES.paddings.mobile}px;
+    padding: 20px ${STYLES.padding.mobile}px;
   }
 
   background-color: white;
@@ -61,11 +61,11 @@ export const NavWrapper = styled.ul`
 
 export const NavItem = styled.li`
   cursor: pointer;
-  color: ${STYLES.colors.dark2};
-  font-family: ${STYLES.fonts.msa};
+  color: ${STYLES.color.dark2};
+  font-family: ${STYLES.font.msa};
   transition: color ease-out 300ms;
 
   &:hover {
-    color: ${STYLES.colors.dark3};
+    color: ${STYLES.color.dark3};
   }
 `;

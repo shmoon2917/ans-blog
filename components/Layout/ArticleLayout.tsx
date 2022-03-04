@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import Footer from './Footer';
 import Header from './Header';
 
-interface PostLayoutProps {
+interface ArticleLayoutProps {
   children?: ReactNode;
 }
 
-export default function PostLayout({ children }: PostLayoutProps) {
+export default function ArticleLayout({ children }: ArticleLayoutProps) {
   return (
     <>
       <Header />
@@ -35,15 +35,4 @@ const Contents = styled.div`
   padding: 30px 40px;
   margin: 0 auto;
   box-sizing: border-box;
-`;
-
-const ContentTitle = styled(Typos.Heading1)`
-  text-align: center;
-  font-size: 40px;
-  line-height: 54px;
-
-  ${STYLES.media.mobile} {
-    font-size: 28px;
-    line-height: 38px;
-  }
 `;
