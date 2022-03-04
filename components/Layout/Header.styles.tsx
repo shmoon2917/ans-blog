@@ -16,8 +16,8 @@ export const Wrapper = styled.header<{ scrolled: boolean }>`
     padding: 20px ${STYLES.padding.mobile}px;
   }
 
-  background-color: white;
-  backdrop-filter: blur(40px);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
 
   transition: box-shadow cubic-bezier(0.4, 0, 0.2, 1) 400ms;
   ${({ scrolled }) =>

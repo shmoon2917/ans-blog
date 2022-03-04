@@ -1,18 +1,20 @@
-import { articlesDirectory, getAllArticles, getArticleByAbsolutePath, getArticleBySlug } from 'lib/api';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
 import React from 'react';
 import { format, parse } from 'date-fns';
-
+import { join } from 'path';
+import { ParsedUrlQuery } from 'querystring';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
-import { ParsedUrlQuery } from 'querystring';
+
 import ArticleLayout from 'components/Layout/ArticleLayout';
-import * as Styles from './styles';
-import { Article } from 'services/types';
 import ArticleHeader from 'components/Article/ArticleHeader';
 import ArticleComments from 'components/Article/ArticleComments';
-import Head from 'next/head';
-import { join } from 'path';
+
+import * as Styles from './styles';
+import { Article } from 'services/types';
+
+import { articlesDirectory, getAllArticles, getArticleByAbsolutePath } from 'lib/api';
 
 interface Props extends Omit<Article, 'slug'> {
   content?: MDXRemoteSerializeResult;

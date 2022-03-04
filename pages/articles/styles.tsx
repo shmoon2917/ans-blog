@@ -62,12 +62,21 @@ export const AritlceStyleWrapper = styled.div`
     ${Typos.Heading4Style}
   }
 
+  h1,
+  h2,
   h3,
   h4,
   h5,
   h6 {
     margin-bottom: 16px;
     margin-top: 24px;
+  }
+
+  ol,
+  ul {
+    padding-left: 1.4em;
+    margin-bottom: 16px;
+    list-style: revert;
   }
 
   li {
@@ -96,7 +105,41 @@ export const AritlceStyleWrapper = styled.div`
     border-left-color: ${STYLES.color.dark3};
     margin: 0 0 0 16px;
     > p {
-      color: ${STYLES.color.dark2};
+      color: ${STYLES.color.dark3};
     }
+  }
+
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: monospace, monospace;
+    font-size: 1em;
+  }
+
+  tt,
+  code {
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+    font-size: 12px;
+  }
+
+  pre {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+    font-size: 12px;
+    word-wrap: normal;
+  }
+
+  p,
+  blockquote,
+  ul,
+  ol,
+  dl,
+  table,
+  pre,
+  details {
+    margin-top: 0px;
+    margin-bottom: 16px;
   }
 `;
