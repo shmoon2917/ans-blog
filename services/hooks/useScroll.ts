@@ -8,7 +8,6 @@ export function useScrolled() {
       const scrollY = window.scrollY;
 
       window.requestAnimationFrame(() => {
-        console.log('123');
         setScrolled(scrollY > 0);
       });
     };

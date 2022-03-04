@@ -1,16 +1,13 @@
 import { Typos } from 'components/Typo';
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
 import { STYLES } from 'services/constants';
+import { Article } from 'services/types';
 import styled from 'styled-components';
 import { SpaceX } from 'styles/theme';
 
-interface LatestArticleProps {
-  category: string;
-  createdAt: string;
-  title: string;
-}
+type LatestArticleProps = Omit<Article, 'slug'>;
 
-const LatestArticle: React.FC<LatestArticleProps> = ({ category, createdAt, title }: LatestArticleProps) => {
+const LatestArticle: React.FC<LatestArticleProps> = ({ category, date, title }: LatestArticleProps) => {
   return (
     <LatestArticleContainer>
       <DescriptionArea>
@@ -19,7 +16,7 @@ const LatestArticle: React.FC<LatestArticleProps> = ({ category, createdAt, titl
         </Typos.Label>
         <Divider />
         <Typos.Label type="large" style={{ color: STYLES.color.dark3 }}>
-          {format(new Date(createdAt), 'yyyy년 M월 d일')}
+          {format(new Date(date), 'yyyy년 M월 d일')}
         </Typos.Label>
       </DescriptionArea>
       <Typos.Heading5>{title}</Typos.Heading5>

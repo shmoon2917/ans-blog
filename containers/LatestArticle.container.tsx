@@ -19,7 +19,7 @@ export default function LatestArticles({ articles }: LatestArticlsProps) {
       {articles?.map(({ slug, date, title, category }) => (
         <Link href={`/articles/${slug}`} key={slug}>
           <a>
-            <LatestArticle title={title} category={category} createdAt={date} />
+            <LatestArticle title={title} category={category} date={date} />
           </a>
         </Link>
       ))}

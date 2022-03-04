@@ -8,6 +8,7 @@ export const SpecialArticleWrapper = styled.article`
   position: relative;
 
   transition: transform, box-shadow cubic-bezier(0.4, 0, 0.2, 1) 200ms;
+  box-sizing: border-box;
 
   &:hover {
     transform: translateY(-5px);
