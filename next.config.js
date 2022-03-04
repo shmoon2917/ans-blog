@@ -9,6 +9,7 @@ const withMDX = require('@next/mdx')({
 
 module.exports = withMDX({
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  experimental: { workThreads: true },
   webpack: (config, { isServer }) => {
     // Fixes npm packages (mdx) that depend on `fs` module
     if (!isServer) {
