@@ -1,4 +1,5 @@
 import { Typos } from 'components/Typo';
+import { format } from 'date-fns';
 import { STYLES } from 'services/constants';
 import styled from 'styled-components';
 import { SpaceX } from 'styles/theme';
@@ -11,20 +12,18 @@ interface LatestArticleProps {
 
 const LatestArticle: React.FC<LatestArticleProps> = ({ category, createdAt, title }: LatestArticleProps) => {
   return (
-    <a style={{ cursor: 'pointer' }}>
-      <LatestArticleContainer>
-        <DescriptionArea>
-          <Typos.Label type="large" style={{ color: STYLES.colors.dark3 }}>
-            {category}
-          </Typos.Label>
-          <Divider />
-          <Typos.Label type="large" style={{ color: STYLES.colors.dark3 }}>
-            {createdAt}
-          </Typos.Label>
-        </DescriptionArea>
-        <Typos.Heading5>{title}</Typos.Heading5>
-      </LatestArticleContainer>
-    </a>
+    <LatestArticleContainer>
+      <DescriptionArea>
+        <Typos.Label type="large" style={{ color: STYLES.colors.dark3 }}>
+          {category}
+        </Typos.Label>
+        <Divider />
+        <Typos.Label type="large" style={{ color: STYLES.colors.dark3 }}>
+          {format(new Date(createdAt), 'yyyy년 M월 d일')}
+        </Typos.Label>
+      </DescriptionArea>
+      <Typos.Heading5>{title}</Typos.Heading5>
+    </LatestArticleContainer>
   );
 };
 

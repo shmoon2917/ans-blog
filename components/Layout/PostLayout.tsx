@@ -5,24 +5,16 @@ import styled from 'styled-components';
 import Footer from './Footer';
 import Header from './Header';
 
-interface PostMetadata {
-  title: string;
-}
-
 interface PostLayoutProps {
-  meta: PostMetadata;
   children?: ReactNode;
 }
 
-export default function PostLayout({ meta, children }: PostLayoutProps) {
+export default function PostLayout({ children }: PostLayoutProps) {
   return (
     <>
       <Header />
       <ContentsWrapper>
-        <Contents>
-          <ContentTitle>{meta?.title}</ContentTitle>
-          {children}
-        </Contents>
+        <Contents>{children}</Contents>
       </ContentsWrapper>
       <Footer />
     </>
