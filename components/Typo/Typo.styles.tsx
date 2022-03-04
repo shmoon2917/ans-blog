@@ -96,28 +96,34 @@ export const BlockQuotes = styled.blockquote`
   line-height: 28px;
 `;
 
+export const LabelSmallStyle = css`
+  font-size: 10px;
+  line-height: 14px;
+  letter-spacing: 0.2px;
+`;
+
+export const LabelMediumStyle = css`
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+`;
+
+export const LabelLargeStyle = css`
+  font-size: 14px;
+  line-height: 24px;
+`;
+
 export const Label = styled.span<{ type: 'small' | 'medium' | 'large' }>`
   font-weight: normal;
 
   ${({ type }) => {
     switch (type) {
       case 'small':
-        return css`
-          font-size: 10px;
-          line-height: 14px;
-          letter-spacing: 0.2px;
-        `;
+        return LabelSmallStyle;
       case 'medium':
-        return css`
-          font-size: 12px;
-          line-height: 16px;
-          letter-spacing: 0.2px;
-        `;
+        return LabelMediumStyle;
       case 'large':
-        return css`
-          font-size: 14px;
-          line-height: 24px;
-        `;
+        return LabelLargeStyle;
       default:
         return;
     }

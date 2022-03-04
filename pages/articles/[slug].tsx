@@ -7,9 +7,11 @@ import { serialize } from 'next-mdx-remote/serialize';
 import { ParsedUrlQuery } from 'querystring';
 import ArticleLayout from 'components/Layout/ArticleLayout';
 import * as Styles from './styles';
+import { Article } from 'services/types';
+import ArticleHeader from 'components/Article/ArticleHeader';
+import { format } from 'date-fns';
 
-interface Props {
-  title?: string;
+interface Props extends Omit<Article, 'slug'> {
   content?: MDXRemoteSerializeResult;
 }
 
@@ -17,10 +19,10 @@ interface ContextParams extends ParsedUrlQuery {
   slug: any;
 }
 
-const ArticleDetailPage = ({ title, content }: Props): JSX.Element => {
+const ArticleDetailPage = ({ content, ...rest }: Props): JSX.Element => {
   return (
     <>
-      <Styles.Title>{title}</Styles.Title>
+      <ArticleHeader {...rest} />
       <Styles.AritlceStyleWrapper>
         <MDXRemote {...content} />
       </Styles.AritlceStyleWrapper>
@@ -35,11 +37,11 @@ ArticleDetailPage.getLayout = function getLayout(page: React.ReactElement) {
 export default ArticleDetailPage;
 
 export const getStaticProps: GetStaticProps<Props, ContextParams> = async ({ params }) => {
-  const article = getArticleBySlug(params?.slug, ['title', 'content']);
+  const article = getArticleBySlug(params?.slug, ['title', 'category', 'date', 'content']);
   const mdxSource = await serialize(article.content);
 
   return {
-    props: { title: article.title, content: mdxSource },
+    props: { title: article.title, category: article.category, date: format(new Date(article.date), 'yyyy.MM.dd'), content: mdxSource },
   };
 };
 

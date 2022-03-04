@@ -17,7 +17,7 @@ export default function LatestArticles({ articles }: LatestArticlsProps) {
         최신 아티클
       </Typos.Label>
       {articles?.map(({ slug, date, title, category }) => (
-        <Link href={`/posts/${slug}`} key={slug}>
+        <Link href={`/articles/${slug}`} key={slug}>
           <a>
             <LatestArticle title={title} category={category} createdAt={date} />
           </a>
