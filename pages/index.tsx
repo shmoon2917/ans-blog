@@ -13,7 +13,6 @@ interface Props {
 const Index = ({ articles }: Props) => {
   return (
     <>
-      <SpecialArticles />
       <LatestArticles articles={articles} />
     </>
   );

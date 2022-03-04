@@ -9,28 +9,29 @@ type LatestArticleProps = Omit<Article, 'slug'>;
 
 const LatestArticle: React.FC<LatestArticleProps> = ({ category, date, title }: LatestArticleProps) => {
   return (
-    <LatestArticleContainer>
-      <DescriptionArea>
+    <Wrapper>
+      <DescriptionWrapper>
         <Typos.Label type="large" style={{ color: STYLES.color.dark3 }}>
           {category}
         </Typos.Label>
         <Divider />
         <Typos.Label type="large" style={{ color: STYLES.color.dark3 }}>
-          {format(new Date(date), 'yyyy년 M월 d일')}
+          {format(parse(date, 'yyyy-MM-dd HH:mm:ss', new Date(date)), 'yyyy년 M월 d일')}
         </Typos.Label>
-      </DescriptionArea>
+      </DescriptionWrapper>
       <Typos.Heading5>{title}</Typos.Heading5>
-    </LatestArticleContainer>
+    </Wrapper>
   );
 };
 
 export default LatestArticle;
 
-const LatestArticleContainer = styled.article`
+const Wrapper = styled.article`
   display: flex;
   flex-direction: column;
   gap: 4px;
   padding: 15px 0;
+  cursor: pointer;
 
   &:hover ${Typos.Heading5} {
     text-decoration: underline;
@@ -43,7 +44,7 @@ const Divider = styled.div`
   background: ${STYLES.color.light0};
 `;
 
-const DescriptionArea = styled.div`
+const DescriptionWrapper = styled.div`
   display: inline-flex;
   align-items: center;
 

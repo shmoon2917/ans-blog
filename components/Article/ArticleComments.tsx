@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import styled from 'styled-components';
 
 const ArticleComments = (): JSX.Element => {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -29,3 +30,9 @@ const ArticleComments = (): JSX.Element => {
 };
 
 export default ArticleComments;
+
+const Wrapper = styled.div`
+  .utterances {
+    max-width: 100%;
+  }
+`;

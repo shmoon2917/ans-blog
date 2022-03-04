@@ -16,13 +16,15 @@ export default function LatestArticles({ articles }: LatestArticlsProps) {
       <Typos.Label type="large" style={{ color: STYLES.color.dark2 }}>
         최신 아티클
       </Typos.Label>
-      {articles?.map(({ slug, date, title, category }) => (
-        <Link href={`/articles/${slug}`} key={slug}>
-          <a>
-            <LatestArticle title={title} category={category} date={date} />
-          </a>
-        </Link>
-      ))}
+      <div>
+        {articles?.map(({ slug, category, ...restProps }) => (
+          <Link href={`/articles/${category}/${slug}`} key={slug} passHref>
+            <a>
+              <LatestArticle category={category} {...restProps} />
+            </a>
+          </Link>
+        ))}
+      </div>
     </LatestArticlesContainer>
   );
 }
