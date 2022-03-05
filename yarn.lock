@@ -1006,6 +1006,7 @@ __metadata:
     gray-matter: 4.0.3
     next: latest
     next-mdx-remote: ^3.0.8
+    next-seo: ^5.1.0
     next-themes: ^0.0.15
     prettier: ^2.5.1
     react: ^17.0.2
@@ -3634,6 +3635,17 @@ __metadata:
     react: ">=16.x <=17.x"
     react-dom: ">=16.x <=17.x"
   checksum: de372708085c7f48ec1c8fb48a9a79cd261235b2d328df0900c9983530d659619f30acc37f5c28eb9813797257ff604449c673b4fba9d17c93af149f436ced6b
+  languageName: node
+  linkType: hard
+
+"next-seo@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "next-seo@npm:5.1.0"
+  peerDependencies:
+    next: ^8.1.1-canary.54 || >=9.0.0
+    react: ">=16.0.0"
+    react-dom: ">=16.0.0"
+  checksum: 4a14fda26d57019637172032436ced849131fea823f72c59f0f043b8cddb0e7cd343c986f26ba9b7608b1cbbcbb0636140bf073d78b593efded52fb3d5f40b64
   languageName: node
   linkType: hard
 
