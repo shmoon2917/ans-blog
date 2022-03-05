@@ -16,6 +16,7 @@ import { Article } from 'services/types';
 
 import { articlesDirectory, getArticles, getArticleByAbsolutePath } from 'lib/api';
 import ArticleCodeBlock from 'components/Article/ArticleCodeBlock';
+import MDXResponsiveImage from 'components/Common/MDXResponsiveImage';
 
 interface Props extends Omit<Article, 'slug' | 'content'> {
   content?: MDXRemoteSerializeResult;
@@ -27,6 +28,7 @@ interface ContextParams extends ParsedUrlQuery {
 
 const MDXComponents = {
   code: ArticleCodeBlock,
+  img: MDXResponsiveImage,
 };
 
 const ArticleDetailPage = ({ content, ...rest }: Props): JSX.Element => {
