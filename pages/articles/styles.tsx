@@ -44,6 +44,8 @@ export const AritlceStyleWrapper = styled.div`
   ul,
   video {
     margin-bottom: 16px;
+    color: ${STYLES.color.dark1};
+    ${Typos.Body1};
   }
 
   h1 {
@@ -128,7 +130,7 @@ export const AritlceStyleWrapper = styled.div`
     margin-top: 0px;
     margin-bottom: 0px;
     font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
-    font-size: 12px;
+    font-size: 13px;
     word-wrap: normal;
   }
 
@@ -146,5 +148,19 @@ export const AritlceStyleWrapper = styled.div`
 
   img {
     width: 100%;
+  }
+
+  hr {
+    height: 1;
+    border: none;
+    background-color: ${STYLES.color.light1};
+  }
+
+  &:not(pre, div) > code {
+    background-color: ${STYLES.color.light1};
+    color: ${STYLES.color.dark1};
+    border-radius: 4px;
+    padding: 2px 4px;
+    margin-right: 2px;
   }
 `;

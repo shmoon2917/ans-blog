@@ -15,6 +15,7 @@ import * as Styles from './styles';
 import { Article } from 'services/types';
 
 import { articlesDirectory, getArticles, getArticleByAbsolutePath } from 'lib/api';
+import ArticleCodeBlock from 'components/Article/ArticleCodeBlock';
 
 interface Props extends Omit<Article, 'slug' | 'content'> {
   content?: MDXRemoteSerializeResult;
@@ -24,6 +25,10 @@ interface ContextParams extends ParsedUrlQuery {
   slug: string[];
 }
 
+const MDXComponents = {
+  code: ArticleCodeBlock,
+};
+
 const ArticleDetailPage = ({ content, ...rest }: Props): JSX.Element => {
   return (
     <>
@@ -32,7 +37,7 @@ const ArticleDetailPage = ({ content, ...rest }: Props): JSX.Element => {
       </Head>
       <ArticleHeader {...rest} />
       <Styles.AritlceStyleWrapper>
-        <MDXRemote {...content} />
+        <MDXRemote {...content} components={MDXComponents} />
       </Styles.AritlceStyleWrapper>
       <ArticleComments />
     </>
