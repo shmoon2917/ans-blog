@@ -1,13 +1,20 @@
 import Image, { ImageProps } from 'next/image';
 import React from 'react';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const MDXResponsiveImage = (props: ImageProps) => {
-  return <Image {...props} alt={props.alt} layout="responsive" loading="lazy" quality={100} />;
+  return (
+    <ImageWrapper>
+      <Image {...props} alt={props.alt} layout="responsive" loading="lazy" quality={100} />;
+    </ImageWrapper>
+  );
 };
 
 export default MDXResponsiveImage;
 
-const ResponsiveImageStyle = css`
-  border-radius: 10px;
+const ImageWrapper = styled.div`
+  * {
+    border-radius: 10px;
+    transition: 0.2s;
+  }
 `;

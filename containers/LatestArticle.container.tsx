@@ -36,7 +36,7 @@ export default function LatestArticles({ articles, categories }: LatestArticlsPr
 
       return (
         <Link href={`/articles/${category}/${slug}`} key={`${category}__${slug}`} passHref>
-          <a>
+          <a title={title}>
             <LatestArticle title={title} category={category} date={date} isNew={isNew} />
           </a>
         </Link>

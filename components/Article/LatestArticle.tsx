@@ -3,7 +3,7 @@ import { Typos } from 'components/Typo';
 import { format, parse } from 'date-fns';
 import { STYLES } from 'services/constants';
 import { Article } from 'services/types';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { SpaceX } from 'styles/theme';
 
 type LatestArticleProps = Omit<Article, 'slug'> & { isNew: boolean };
@@ -49,6 +49,18 @@ const DescriptionWrapper = styled.div`
   ${SpaceX(8)}
 `;
 
+const NewBadgeKeyframe = keyframes`
+  0% {
+    background: ${STYLES.color.blue3};
+  }
+  50% {
+    background: ${STYLES.color.primaryDefault};
+  }
+  100% {
+    background: ${STYLES.color.blue3};
+  }
+`;
+
 const NewBadge = styled.sup`
   display: inline-block;
   vertical-align: super;
@@ -57,6 +69,6 @@ const NewBadge = styled.sup`
   background: ${STYLES.color.primaryDefault};
   border-radius: 100%;
   margin-left: 4px;
-
+  animation: ${NewBadgeKeyframe} 2s infinite;
   ${Typos.LabelLargeStyle};
 `;
