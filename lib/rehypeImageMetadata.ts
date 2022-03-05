@@ -5,7 +5,7 @@ import { getPlaiceholder } from 'plaiceholder';
 import { Node } from 'unist';
 import { visit } from 'unist-util-visit';
 
-export type ImageNode = {
+type ImageNode = {
   type: 'element';
   tagName: 'img';
   properties: {
@@ -17,12 +17,12 @@ export type ImageNode = {
   };
 };
 
-export function isImageNode(node: Node): node is ImageNode {
+function isImageNode(node: Node): node is ImageNode {
   const img = node as ImageNode;
   return img.type === 'element' && img.tagName === 'img' && img.properties && typeof img.properties.src === 'string';
 }
 
-export async function addProps(node: ImageNode): Promise<void> {
+async function addProps(node: ImageNode): Promise<void> {
   let res: ISizeCalculationResult | undefined;
   let blur64: string;
 
