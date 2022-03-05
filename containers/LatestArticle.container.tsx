@@ -2,9 +2,11 @@ import LatestArticle from 'components/Article/LatestArticle';
 import Chip from 'components/Chip/Chip';
 import { ChipSetProps } from 'components/Chip/types';
 import { Typos } from 'components/Typo';
+import { differenceInCalendarDays, format, parse } from 'date-fns';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { STYLES } from 'services/constants';
+import { ARTICLE_NEW_DAYS } from 'services/constants/date';
 import { Article } from 'services/types';
 import styled from 'styled-components';
 import { SpaceY } from 'styles/theme';
@@ -27,21 +29,28 @@ export default function LatestArticles({ articles, categories }: LatestArticlsPr
     }
   };
 
+  const renderArticles = () => {
+    return articles.map(({ slug, date, title, category }) => {
+      const parsedDate = parse(date, 'yyyy-MM-dd HH:mm:ss', new Date());
+      const isNew = differenceInCalendarDays(new Date(), parsedDate) <= ARTICLE_NEW_DAYS;
+
+      return (
+        <Link href={`/articles/${category}/${slug}`} key={`${category}__${slug}`} passHref>
+          <a>
+            <LatestArticle title={title} category={category} date={date} isNew={isNew} />
+          </a>
+        </Link>
+      );
+    });
+  };
+
   return (
     <LatestArticlesContainer>
       <HeaderWrapper>
         <Label type="large">최신 아티클</Label>
         <CategorySlider categories={categories} selected={category as string} onChange={handleChipClick} />
       </HeaderWrapper>
-      <div>
-        {articles.map(({ slug, category, ...restProps }) => (
-          <Link href={`/articles/${category}/${slug}`} key={`${category}__${slug}`} passHref>
-            <a>
-              <LatestArticle category={category} {...restProps} />
-            </a>
-          </Link>
-        ))}
-      </div>
+      <div>{renderArticles()}</div>
     </LatestArticlesContainer>
   );
 }

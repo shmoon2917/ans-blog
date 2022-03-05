@@ -6,9 +6,9 @@ import { Article } from 'services/types';
 import styled from 'styled-components';
 import { SpaceX } from 'styles/theme';
 
-type LatestArticleProps = Omit<Article, 'slug'>;
+type LatestArticleProps = Omit<Article, 'slug'> & { isNew: boolean };
 
-const LatestArticle: React.FC<LatestArticleProps> = ({ category, date, title }: LatestArticleProps) => {
+const LatestArticle: React.FC<LatestArticleProps> = ({ category, date, title, isNew }: LatestArticleProps) => {
   return (
     <Wrapper>
       <DescriptionWrapper>
@@ -20,7 +20,10 @@ const LatestArticle: React.FC<LatestArticleProps> = ({ category, date, title }: 
           {format(parse(date, 'yyyy-MM-dd HH:mm:ss', new Date(date)), 'yyyy년 M월 d일')}
         </Typos.Label>
       </DescriptionWrapper>
-      <Typos.Heading5>{title}</Typos.Heading5>
+      <Typos.Heading5>
+        {title}
+        {isNew ? <NewBadge /> : null}
+      </Typos.Heading5>
     </Wrapper>
   );
 };
@@ -44,4 +47,16 @@ const DescriptionWrapper = styled.div`
   align-items: center;
 
   ${SpaceX(8)}
+`;
+
+const NewBadge = styled.sup`
+  display: inline-block;
+  vertical-align: super;
+  width: 6px;
+  height: 6px;
+  background: ${STYLES.color.primaryDefault};
+  border-radius: 100%;
+  margin-left: 4px;
+
+  ${Typos.LabelLargeStyle};
 `;
