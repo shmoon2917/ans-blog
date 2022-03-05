@@ -115,6 +115,7 @@ export const AritlceStyleWrapper = styled.div`
   samp {
     font-family: monospace, monospace;
     font-size: 1em;
+    overflow: scroll;
   }
 
   tt,
@@ -141,5 +142,9 @@ export const AritlceStyleWrapper = styled.div`
   details {
     margin-top: 0px;
     margin-bottom: 16px;
+  }
+
+  img {
+    width: 100%;
   }
 `;

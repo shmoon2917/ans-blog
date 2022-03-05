@@ -1,3 +1,4 @@
+import { Divider } from 'components/Common/Divider';
 import { Typos } from 'components/Typo';
 import React from 'react';
 import { STYLES } from 'services/constants';
@@ -12,7 +13,7 @@ const ArticleHeader = ({ title, category, date }: ArticleHeaderProps): JSX.Eleme
       <Title>{title}</Title>
       <DescriptionWrapper>
         <DescriptionText>{category}</DescriptionText>
-        <DescriptionText style={{ color: STYLES.color.light0 }}>|</DescriptionText>
+        <Divider />
         <DescriptionText>{date}</DescriptionText>
       </DescriptionWrapper>
     </Wrapper>

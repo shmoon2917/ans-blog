@@ -13,26 +13,21 @@ export default function ArticleLayout({ children }: ArticleLayoutProps) {
   return (
     <>
       <Header />
-      <ContentsWrapper>
-        <Contents>{children}</Contents>
-      </ContentsWrapper>
+      <ContentsWrapper>{children}</ContentsWrapper>
       <Footer />
     </>
   );
 }
 
 const ContentsWrapper = styled.main`
-  margin-top: 80px;
+  max-width: ${700 + STYLES.padding.default}px;
+  width: 100%;
+  padding: 30px ${STYLES.padding.default}px;
+  margin: 80px auto 0;
+  box-sizing: border-box;
 
   ${STYLES.media.mobile} {
+    padding: 30px ${STYLES.padding.mobile}px;
     margin-top: 64px;
   }
-`;
-
-const Contents = styled.div`
-  max-width: 1140px;
-  width: 100%;
-  padding: 30px 40px;
-  margin: 0 auto;
-  box-sizing: border-box;
 `;

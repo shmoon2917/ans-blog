@@ -16,12 +16,12 @@ import { Article } from 'services/types';
 
 import { articlesDirectory, getArticles, getArticleByAbsolutePath } from 'lib/api';
 
-interface Props extends Omit<Article, 'slug'> {
+interface Props extends Omit<Article, 'slug' | 'content'> {
   content?: MDXRemoteSerializeResult;
 }
 
 interface ContextParams extends ParsedUrlQuery {
-  categoryAndSlug: string[];
+  slug: string[];
 }
 
 const ArticleDetailPage = ({ content, ...rest }: Props): JSX.Element => {
@@ -46,7 +46,7 @@ ArticleDetailPage.getLayout = function getLayout(page: React.ReactElement) {
 export default ArticleDetailPage;
 
 export const getStaticProps: GetStaticProps<Props, ContextParams> = async ({ params }) => {
-  const [category, slug] = params!.categoryAndSlug;
+  const [category, slug] = params!.slug;
   const path = join(articlesDirectory, category, `${slug}.mdx`);
 
   const article = getArticleByAbsolutePath(path, ['title', 'category', 'date', 'content']);
@@ -66,7 +66,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const articles = getArticles(['category', 'slug', 'date']);
 
   return {
-    paths: articles.map((article) => ({ params: { categoryAndSlug: [article.category, article.slug] } })),
+    paths: articles.map((article) => ({ params: { slug: [article.category, article.slug] } })),
     fallback: false,
   };
 };

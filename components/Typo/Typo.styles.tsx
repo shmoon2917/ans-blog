@@ -63,7 +63,7 @@ export const Heading6 = styled.h6`
 export const Lead = styled.p`
   font-weight: 400;
   font-size: 14;
-  line-height: 24px;
+  line-height: 28px;
 `;
 
 export const Small = styled.p`
@@ -81,13 +81,13 @@ export const Tiny = styled.p`
 export const Body1 = styled.p`
   font-weight: normal;
   font-size: 16;
-  line-height: 24px;
+  line-height: 28px;
 `;
 
 export const Body2 = styled.p`
   font-weight: normal;
   font-size: 14;
-  line-height: 24px;
+  line-height: 28px;
 `;
 
 export const BlockQuotes = styled.blockquote`
@@ -110,7 +110,7 @@ export const LabelMediumStyle = css`
 
 export const LabelLargeStyle = css`
   font-size: 14px;
-  line-height: 24px;
+  line-height: 28px;
 `;
 
 export const Label = styled.span<{ type: 'small' | 'medium' | 'large' }>`

@@ -35,14 +35,22 @@ Chip.Set = ChipSet;
 
 const ChipSetWrapper = styled.ul`
   display: flex;
-  ${SpaceX(8)}
+  overflow: scroll;
+  ${SpaceX(8)};
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
-const ChipWrapper = styled.li<{ selected: boolean; disabled: boolean }>`
+const ChipWrapper = styled.li<{ selected: boolean; disabled: boolean | undefined }>`
   border-radius: 100px;
   display: inline-block;
   padding: 3px 10px;
   cursor: pointer;
+  flex-shrink: 0;
 
   &:hover {
     background-color: ${STYLES.color.light3};
@@ -55,13 +63,25 @@ const ChipWrapper = styled.li<{ selected: boolean; disabled: boolean }>`
     color: ${STYLES.color.dark2};
   }
 
+  ${STYLES.media.mobile} {
+    &:hover {
+      background-color: unset;
+      color: unset;
+    }
+
+    &:active,
+    &:focus {
+      background-color: unset;
+      color: unset;
+    }
+  }
+
   ${({ selected }) =>
     selected
       ? css`
           pointer-events: none;
           background-color: ${STYLES.color.dark1};
           color: ${STYLES.color.light4};
-          font-weight: bold;
         `
       : css`
           background-color: ${STYLES.color.light2};

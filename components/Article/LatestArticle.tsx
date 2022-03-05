@@ -1,3 +1,4 @@
+import { Divider } from 'components/Common/Divider';
 import { Typos } from 'components/Typo';
 import { format, parse } from 'date-fns';
 import { STYLES } from 'services/constants';
@@ -36,12 +37,6 @@ const Wrapper = styled.article`
   &:hover ${Typos.Heading5} {
     text-decoration: underline;
   }
-`;
-
-const Divider = styled.div`
-  width: 1px;
-  height: 8px;
-  background: ${STYLES.color.light0};
 `;
 
 const DescriptionWrapper = styled.div`

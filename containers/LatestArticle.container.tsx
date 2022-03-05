@@ -16,7 +16,7 @@ interface LatestArticlsProps {
 
 export default function LatestArticles({ articles, categories }: LatestArticlsProps) {
   const router = useRouter();
-  const filteredCategory = (router.query?.category as string) ?? null;
+  const { category } = router?.query;
 
   const handleChipClick: ChipSetProps<string>['onChange'] = ({ value }) => {
     if (value === null) {
@@ -30,7 +30,7 @@ export default function LatestArticles({ articles, categories }: LatestArticlsPr
     <LatestArticlesContainer>
       <HeaderWrapper>
         <Label type="large">최신 아티클</Label>
-        <Chip.Set value={filteredCategory} onChange={handleChipClick}>
+        <Chip.Set<string> value={category as string} onChange={handleChipClick}>
           <Chip value={null}>전체</Chip>
           {categories.map((category) => (
             <Chip value={category} key={category}>
@@ -42,7 +42,7 @@ export default function LatestArticles({ articles, categories }: LatestArticlsPr
 
       <div>
         {articles.map(({ slug, category, ...restProps }) => (
-          <Link href={`/articles/${category}/${slug}`} key={slug} passHref>
+          <Link href={`/articles/${category}/${slug}`} key={`${category}__${slug}`} passHref>
             <a>
               <LatestArticle category={category} {...restProps} />
             </a>
@@ -55,18 +55,23 @@ export default function LatestArticles({ articles, categories }: LatestArticlsPr
 
 const LatestArticlesContainer = styled.section`
   ${SpaceY(12)}
-  padding: 12px ${STYLES.padding.default}px;
+  padding: 12px ${STYLES.padding.default}px 36px;
   margin: 0 auto;
   max-width: 1140px;
   box-sizing: border-box;
 
   ${STYLES.media.mobile} {
-    padding: 12px ${STYLES.padding.mobile}px;
+    padding: 12px ${STYLES.padding.mobile}px 36px;
   }
 `;
 
 const Label = styled(Typos.Label)`
   color: ${STYLES.color.dark2};
+  display: revert;
+
+  ${STYLES.media.mobile} {
+    display: none;
+  }
 `;
 
 const HeaderWrapper = styled.div`

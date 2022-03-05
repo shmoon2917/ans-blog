@@ -12,11 +12,7 @@ interface Props {
 }
 
 const Index = ({ articles, categories }: Props) => {
-  return (
-    <>
-      <LatestArticles articles={articles} categories={categories} />
-    </>
-  );
+  return <LatestArticles articles={articles} categories={categories} />;
 };
 
 Index.getLayout = function getLayout(page: React.ReactElement) {
@@ -26,8 +22,8 @@ Index.getLayout = function getLayout(page: React.ReactElement) {
 export default Index;
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) => {
-  const filteredCategory = (query?.category as string) || undefined;
-  const articles = getArticles(['date', 'slug', 'title', 'category'], filteredCategory);
+  const targetCategory = query?.category as string;
+  const articles = getArticles(['date', 'slug', 'title', 'category'], targetCategory);
   const categories = getCategories();
 
   return {

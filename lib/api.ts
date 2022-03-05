@@ -2,26 +2,23 @@ import fs from 'fs';
 import { basename, join } from 'path';
 import matter from 'gray-matter';
 import glob from 'glob';
+import { Article, ArticleField } from 'services/types';
 
 export const articlesDirectory = join(process.cwd(), '_articles');
 
-export function getArticleByAbsolutePath(path: string, fields: string[] = []) {
-  // const realSlug = slug.replace(/\.mdx$/, '');
-  const realSlug = basename(path).replace(/\.mdx$/, '');
+export function getArticleByAbsolutePath(path: string, fields: ArticleField[] = []) {
+  const slug = basename(path).replace(/\.mdx$/, '');
 
-  const fullPath = join(articlesDirectory, `${realSlug}.mdx`);
-
-  // const fileContents = fs.readFileSync(fullPath, 'utf8');
   const fileContents = fs.readFileSync(path, 'utf-8');
 
   const { data, content } = matter(fileContents);
 
-  const items: Record<string, any> = {};
+  const items = {} as Article;
 
   // Ensure only the minimal needed data is exposed
   fields.forEach((field) => {
     if (field === 'slug') {
-      items[field] = realSlug;
+      items[field] = slug;
     }
     if (field === 'content') {
       items[field] = content;
@@ -34,17 +31,15 @@ export function getArticleByAbsolutePath(path: string, fields: string[] = []) {
   return items;
 }
 
-function getAbsoluteArticles(directory: string, category?: string) {
-  const categoryGlobPattern = category === null ? '**' : category;
+function getArticlePaths(directory: string, category?: string) {
+  const categoryGlobPattern = category ?? '**';
 
-  const files = glob.sync(`${directory}/${categoryGlobPattern}/*.mdx`).reduce<string[]>((acc, cur) => [...acc, cur], []);
-
+  const files = glob.sync(`${directory}/${categoryGlobPattern}/*.mdx`);
   return files;
 }
 
-export function getArticles(fields: string[] = [], category?: string) {
-  // const slugs = getArticleSlugs();
-  const paths = getAbsoluteArticles(articlesDirectory, category);
+export function getArticles(fields: ArticleField[] = [], category?: string) {
+  const paths = getArticlePaths(articlesDirectory, category);
 
   const articles = paths
     .map((slug) => getArticleByAbsolutePath(slug, fields))
