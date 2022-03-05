@@ -8,7 +8,7 @@ import { ChipProps, ChipSetProps } from './types';
 
 const Chip = <T extends unknown>({ value, disabled, children }: ChipProps<T>): JSX.Element => {
   const context = useContext(ChipSetContext);
-  const selected = context?.value ? context?.value === value : false;
+  const selected = context?.value !== undefined ? context?.value === value : false;
 
   const handleClick = () => {
     context?.onChange?.({ value });
@@ -30,6 +30,8 @@ const ChipSet = <T extends unknown>({ value, disabled, onChange, children }: Chi
     </ChipSetContext.Provider>
   );
 };
+
+Chip.Set = ChipSet;
 
 const ChipSetWrapper = styled.ul`
   display: flex;

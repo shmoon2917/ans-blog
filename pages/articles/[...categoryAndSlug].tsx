@@ -14,7 +14,7 @@ import ArticleComments from 'components/Article/ArticleComments';
 import * as Styles from './styles';
 import { Article } from 'services/types';
 
-import { articlesDirectory, getAllArticles, getArticleByAbsolutePath } from 'lib/api';
+import { articlesDirectory, getArticles, getArticleByAbsolutePath } from 'lib/api';
 
 interface Props extends Omit<Article, 'slug'> {
   content?: MDXRemoteSerializeResult;
@@ -63,7 +63,7 @@ export const getStaticProps: GetStaticProps<Props, ContextParams> = async ({ par
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = getAllArticles(['category', 'slug', 'date']);
+  const articles = getArticles(['category', 'slug', 'date']);
 
   return {
     paths: articles.map((article) => ({ params: { categoryAndSlug: [article.category, article.slug] } })),

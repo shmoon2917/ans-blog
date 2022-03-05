@@ -1,19 +1,20 @@
 import React from 'react';
-import { getAllArticles } from '../lib/api';
 import MainLayout from 'components/Layout/MainLayout';
 import SpecialArticles from 'containers/SpecialArticle.container';
 import LatestArticles from 'containers/LatestArticle.container';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps, GetStaticProps } from 'next';
 import { Article } from 'services/types';
+import { getArticles, getCategories } from 'lib/api';
 
 interface Props {
   articles: Article[];
+  categories: string[];
 }
 
-const Index = ({ articles }: Props) => {
+const Index = ({ articles, categories }: Props) => {
   return (
     <>
-      <LatestArticles articles={articles} />
+      <LatestArticles articles={articles} categories={categories} />
     </>
   );
 };
@@ -24,11 +25,12 @@ Index.getLayout = function getLayout(page: React.ReactElement) {
 
 export default Index;
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const articles = getAllArticles(['date', 'slug', 'title', 'category']);
+export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) => {
+  const filteredCategory = (query?.category as string) || undefined;
+  const articles = getArticles(['date', 'slug', 'title', 'category'], filteredCategory);
+  const categories = getCategories();
 
   return {
-    props: { articles },
-    revalidate: 1800,
+    props: { articles, categories },
   };
 };
