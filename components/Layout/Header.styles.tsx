@@ -18,6 +18,7 @@ export const Wrapper = styled.header<{ scrolled: boolean }>`
 
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(5px);
+  z-index: 100;
 
   transition: box-shadow cubic-bezier(0.4, 0, 0.2, 1) 400ms;
   ${({ scrolled }) =>

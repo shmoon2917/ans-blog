@@ -1,6 +1,7 @@
+import React from 'react';
+
 import Chip from 'components/Chip/Chip';
 import { ChipSetProps } from 'components/Chip/types';
-import React from 'react';
 
 interface CategorySliderProps {
   categories: string[];

@@ -1,4 +1,4 @@
-import withHorizontalScrollShadower from 'hocs/withHorizontalScrollShadower';
+import withHorizontalScrollShadower from 'components/Common/withHorizontalScrollShadower';
 import React, { ReactNode, useContext } from 'react';
 import * as Styles from './styles';
 import { ChipSetContext } from './context';
