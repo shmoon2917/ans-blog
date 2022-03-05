@@ -1,11 +1,11 @@
+import sizeOf from 'image-size';
 import { ISizeCalculationResult } from 'image-size/dist/types/interface';
 import path from 'path';
-import { Node } from 'unist';
-import sizeOf from 'image-size';
 import { getPlaiceholder } from 'plaiceholder';
+import { Node } from 'unist';
 import { visit } from 'unist-util-visit';
 
-type ImageNode = {
+export type ImageNode = {
   type: 'element';
   tagName: 'img';
   properties: {
@@ -17,15 +17,16 @@ type ImageNode = {
   };
 };
 
-function isImageNode(node: Node): node is ImageNode {
+export function isImageNode(node: Node): node is ImageNode {
   const img = node as ImageNode;
   return img.type === 'element' && img.tagName === 'img' && img.properties && typeof img.properties.src === 'string';
 }
 
-async function addProps(node: ImageNode): Promise<void> {
+export async function addProps(node: ImageNode): Promise<void> {
   let res: ISizeCalculationResult | undefined;
   let blur64: string;
 
+  // Local인지 아닌지 판명
   const isExternal = node.properties.src.startsWith('http');
 
   if (!isExternal) {
@@ -45,6 +46,7 @@ async function addProps(node: ImageNode): Promise<void> {
 
   node.properties.width = res.width;
   node.properties.height = res.height;
+
   node.properties.blurDataURL = blur64;
   node.properties.placeholder = 'blur';
 }
@@ -54,7 +56,9 @@ const imageMetadata = () => {
     const images: ImageNode[] = [];
 
     visit(tree, 'element', (node) => {
-      if (isImageNode(node)) images.push(node);
+      if (isImageNode(node)) {
+        images.push(node);
+      }
     });
 
     for (const image of images) {

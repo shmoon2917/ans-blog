@@ -1,11 +1,11 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
-import Head from 'next/head';
-import React from 'react';
 import { format, parse } from 'date-fns';
-import { join } from 'path';
-import { ParsedUrlQuery } from 'querystring';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
+import Head from 'next/head';
+import { join } from 'path';
+import { ParsedUrlQuery } from 'querystring';
+import React from 'react';
 
 import ArticleLayout from 'components/Layout/ArticleLayout';
 import ArticleHeader from 'components/Article/ArticleHeader';
@@ -15,8 +15,7 @@ import * as Styles from './styles';
 import { Article } from 'services/types';
 
 import { articlesDirectory, getArticles, getArticleByAbsolutePath } from 'lib/api';
-import ArticleCodeBlock from 'components/Article/ArticleCodeBlock';
-import MDXResponsiveImage from 'components/Common/MDXResponsiveImage';
+import { MDXComponents } from 'lib/mdxComponents';
 import imageMetadata from 'lib/rehypeImageMetadata';
 
 interface Props extends Omit<Article, 'slug' | 'content'> {
@@ -26,11 +25,6 @@ interface Props extends Omit<Article, 'slug' | 'content'> {
 interface ContextParams extends ParsedUrlQuery {
   slug: string[];
 }
-
-const MDXComponents = {
-  code: ArticleCodeBlock,
-  img: MDXResponsiveImage,
-};
 
 const ArticleDetailPage = ({ content, ...rest }: Props): JSX.Element => {
   return (
