@@ -45,6 +45,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/prettier", "npm:2.4.3"],
             ["@types/react", "npm:17.0.39"],
             ["@types/react-dom", "npm:17.0.11"],
+            ["@types/react-syntax-highlighter", "npm:13.5.2"],
             ["@types/styled-components", "npm:5.1.23"],
             ["babel-plugin-styled-components", "virtual:41ba61954f7b47d232ab39ed6fcdcd60d87079c9fc99d9b097eeae989c1f285bd964decb93059f7777293e3ef3801f096dd14b04a52c184e1fa3f298302b3fe4#npm:2.0.6"],
             ["date-fns", "npm:2.21.3"],
@@ -1105,6 +1106,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/react-syntax-highlighter", [
+        ["npm:13.5.2", {
+          "packageLocation": "./.yarn/cache/@types-react-syntax-highlighter-npm-13.5.2-438517ebc1-237cb59636.zip/node_modules/@types/react-syntax-highlighter/",
+          "packageDependencies": [
+            ["@types/react-syntax-highlighter", "npm:13.5.2"],
+            ["@types/react", "npm:17.0.39"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/scheduler", [
         ["npm:0.16.2", {
           "packageLocation": "./.yarn/cache/@types-scheduler-npm-0.16.2-ba3a7d8c68-b6b4dcfeae.zip/node_modules/@types/scheduler/",
@@ -1303,6 +1314,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/prettier", "npm:2.4.3"],
             ["@types/react", "npm:17.0.39"],
             ["@types/react-dom", "npm:17.0.11"],
+            ["@types/react-syntax-highlighter", "npm:13.5.2"],
             ["@types/styled-components", "npm:5.1.23"],
             ["babel-plugin-styled-components", "virtual:41ba61954f7b47d232ab39ed6fcdcd60d87079c9fc99d9b097eeae989c1f285bd964decb93059f7777293e3ef3801f096dd14b04a52c184e1fa3f298302b3fe4#npm:2.0.6"],
             ["date-fns", "npm:2.21.3"],

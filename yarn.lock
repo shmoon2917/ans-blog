@@ -828,6 +828,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-syntax-highlighter@npm:^13.5.2":
+  version: 13.5.2
+  resolution: "@types/react-syntax-highlighter@npm:13.5.2"
+  dependencies:
+    "@types/react": "*"
+  checksum: 237cb596368f7c2c8549d0150308cd5fe633d249b6e20bebb4e242bc1172b60e808db2a57d212f409ab3fee37f47b8465ac35c4754e814d7e0f53cc1b2dd14ea
+  languageName: node
+  linkType: hard
+
 "@types/react@npm:*, @types/react@npm:>=16, @types/react@npm:^17.0.6":
   version: 17.0.39
   resolution: "@types/react@npm:17.0.39"
@@ -986,6 +995,7 @@ __metadata:
     "@types/prettier": ^2
     "@types/react": ^17.0.6
     "@types/react-dom": ^17.0.5
+    "@types/react-syntax-highlighter": ^13.5.2
     "@types/styled-components": ^5
     babel-plugin-styled-components: ^2.0.6
     date-fns: 2.21.3
