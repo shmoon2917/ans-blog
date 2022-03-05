@@ -17,6 +17,7 @@ import { Article } from 'services/types';
 import { articlesDirectory, getArticles, getArticleByAbsolutePath } from 'lib/api';
 import ArticleCodeBlock from 'components/Article/ArticleCodeBlock';
 import MDXResponsiveImage from 'components/Common/MDXResponsiveImage';
+import imageMetadata from 'lib/rehypeImageMetadata';
 
 interface Props extends Omit<Article, 'slug' | 'content'> {
   content?: MDXRemoteSerializeResult;
@@ -57,7 +58,11 @@ export const getStaticProps: GetStaticProps<Props, ContextParams> = async ({ par
   const path = join(articlesDirectory, category, `${slug}.mdx`);
 
   const article = getArticleByAbsolutePath(path, ['title', 'category', 'date', 'content']);
-  const mdxSource = await serialize(article.content);
+  const mdxSource = await serialize(article.content, {
+    mdxOptions: {
+      rehypePlugins: [imageMetadata],
+    },
+  });
 
   return {
     props: {
