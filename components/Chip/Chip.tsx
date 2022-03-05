@@ -1,7 +1,8 @@
+import withHorizontalScrollShadower from 'components/Common/HorizontalScrollShadower';
 import { Typos } from 'components/Typo';
 import React, { ReactNode, useContext } from 'react';
 import { STYLES } from 'services/constants';
-import styled, { css } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { SpaceX } from 'styles/theme';
 import { ChipSetContext } from './context';
 import { ChipProps, ChipSetProps } from './types';
@@ -26,14 +27,17 @@ export default Chip;
 const ChipSet = <T extends unknown>({ value, disabled, onChange, children }: ChipSetProps<T>) => {
   return (
     <ChipSetContext.Provider value={{ value, disabled, onChange }}>
-      <ChipSetWrapper>{children}</ChipSetWrapper>
+      <ChipSetWrapper scrollAreaStyle={SpaceX(8)}>{children}</ChipSetWrapper>
     </ChipSetContext.Provider>
   );
 };
 
 Chip.Set = ChipSet;
 
-const ChipSetWrapper = styled.ul`
+const _ChipSetWrapper = styled.ul<{ css?: FlattenSimpleInterpolation }>`
+  position: relative;
+  overflow: hidden;
+
   display: flex;
   overflow: scroll;
   ${SpaceX(8)};
@@ -43,7 +47,11 @@ const ChipSetWrapper = styled.ul`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  ${({ css }) => css};
 `;
+
+const ChipSetWrapper = withHorizontalScrollShadower(_ChipSetWrapper);
 
 const ChipWrapper = styled.li<{ selected: boolean; disabled: boolean | undefined }>`
   border-radius: 100px;

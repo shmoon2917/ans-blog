@@ -7,9 +7,9 @@ interface HorizontalScrollShadowerProps {
   children?: ReactNode;
 }
 
-const withHorizontalScrollShadower = (Wrapper: StyledComponent<'div', any, { css?: FlattenSimpleInterpolation }>) => {
+const withHorizontalScrollShadower = (Wrapper: StyledComponent<any, any, { css?: FlattenSimpleInterpolation }>) => {
   const Component = ({ children, wrapperStyle, scrollAreaStyle }: HorizontalScrollShadowerProps) => {
-    const wrapperRef = useRef<HTMLDivElement>(null);
+    const wrapperRef = useRef<HTMLElement>(null);
     const scrollRef = useRef<HTMLDivElement>(null);
 
     const [scrolledLeft, setScrolledLeft] = useState(false);
