@@ -39,6 +39,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@mdx-js/react", "virtual:41ba61954f7b47d232ab39ed6fcdcd60d87079c9fc99d9b097eeae989c1f285bd964decb93059f7777293e3ef3801f096dd14b04a52c184e1fa3f298302b3fe4#npm:2.0.0"],
             ["@next/mdx", "virtual:41ba61954f7b47d232ab39ed6fcdcd60d87079c9fc99d9b097eeae989c1f285bd964decb93059f7777293e3ef3801f096dd14b04a52c184e1fa3f298302b3fe4#npm:12.1.0"],
             ["@types/eslint", "npm:8.4.1"],
+            ["@types/glob", "npm:7.2.0"],
             ["@types/jest", "npm:26.0.24"],
             ["@types/node", "npm:15.14.9"],
             ["@types/prettier", "npm:2.4.3"],
@@ -50,6 +51,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint", "npm:8.8.0"],
             ["eslint-config-next", "virtual:41ba61954f7b47d232ab39ed6fcdcd60d87079c9fc99d9b097eeae989c1f285bd964decb93059f7777293e3ef3801f096dd14b04a52c184e1fa3f298302b3fe4#npm:12.0.10"],
             ["eslint-config-prettier", "virtual:41ba61954f7b47d232ab39ed6fcdcd60d87079c9fc99d9b097eeae989c1f285bd964decb93059f7777293e3ef3801f096dd14b04a52c184e1fa3f298302b3fe4#npm:8.3.0"],
+            ["glob", "npm:7.2.0"],
             ["gray-matter", "npm:4.0.3"],
             ["next", "virtual:41ba61954f7b47d232ab39ed6fcdcd60d87079c9fc99d9b097eeae989c1f285bd964decb93059f7777293e3ef3801f096dd14b04a52c184e1fa3f298302b3fe4#npm:12.0.10"],
             ["next-mdx-remote", "virtual:41ba61954f7b47d232ab39ed6fcdcd60d87079c9fc99d9b097eeae989c1f285bd964decb93059f7777293e3ef3801f096dd14b04a52c184e1fa3f298302b3fe4#npm:3.0.8"],
@@ -892,6 +894,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/glob", [
+        ["npm:7.2.0", {
+          "packageLocation": "./.yarn/cache/@types-glob-npm-7.2.0-772334bf9a-6ae717fedf.zip/node_modules/@types/glob/",
+          "packageDependencies": [
+            ["@types/glob", "npm:7.2.0"],
+            ["@types/minimatch", "npm:3.0.5"],
+            ["@types/node", "npm:17.0.14"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/hast", [
         ["npm:2.3.4", {
           "packageLocation": "./.yarn/cache/@types-hast-npm-2.3.4-7249cc0ece-fff47998f4.zip/node_modules/@types/hast/",
@@ -995,6 +1008,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-mdx-npm-2.0.1-93f8844bdf-521ee9f976.zip/node_modules/@types/mdx/",
           "packageDependencies": [
             ["@types/mdx", "npm:2.0.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/minimatch", [
+        ["npm:3.0.5", {
+          "packageLocation": "./.yarn/cache/@types-minimatch-npm-3.0.5-802bb0797f-c41d136f67.zip/node_modules/@types/minimatch/",
+          "packageDependencies": [
+            ["@types/minimatch", "npm:3.0.5"]
           ],
           "linkType": "HARD",
         }]
@@ -1274,6 +1296,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@mdx-js/react", "virtual:41ba61954f7b47d232ab39ed6fcdcd60d87079c9fc99d9b097eeae989c1f285bd964decb93059f7777293e3ef3801f096dd14b04a52c184e1fa3f298302b3fe4#npm:2.0.0"],
             ["@next/mdx", "virtual:41ba61954f7b47d232ab39ed6fcdcd60d87079c9fc99d9b097eeae989c1f285bd964decb93059f7777293e3ef3801f096dd14b04a52c184e1fa3f298302b3fe4#npm:12.1.0"],
             ["@types/eslint", "npm:8.4.1"],
+            ["@types/glob", "npm:7.2.0"],
             ["@types/jest", "npm:26.0.24"],
             ["@types/node", "npm:15.14.9"],
             ["@types/prettier", "npm:2.4.3"],
@@ -1285,6 +1308,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint", "npm:8.8.0"],
             ["eslint-config-next", "virtual:41ba61954f7b47d232ab39ed6fcdcd60d87079c9fc99d9b097eeae989c1f285bd964decb93059f7777293e3ef3801f096dd14b04a52c184e1fa3f298302b3fe4#npm:12.0.10"],
             ["eslint-config-prettier", "virtual:41ba61954f7b47d232ab39ed6fcdcd60d87079c9fc99d9b097eeae989c1f285bd964decb93059f7777293e3ef3801f096dd14b04a52c184e1fa3f298302b3fe4#npm:8.3.0"],
+            ["glob", "npm:7.2.0"],
             ["gray-matter", "npm:4.0.3"],
             ["next", "virtual:41ba61954f7b47d232ab39ed6fcdcd60d87079c9fc99d9b097eeae989c1f285bd964decb93059f7777293e3ef3801f096dd14b04a52c184e1fa3f298302b3fe4#npm:12.0.10"],
             ["next-mdx-remote", "virtual:41ba61954f7b47d232ab39ed6fcdcd60d87079c9fc99d9b097eeae989c1f285bd964decb93059f7777293e3ef3801f096dd14b04a52c184e1fa3f298302b3fe4#npm:3.0.8"],

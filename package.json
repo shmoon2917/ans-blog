@@ -13,6 +13,7 @@
     "@next/mdx": "^12.1.0",
     "babel-plugin-styled-components": "^2.0.6",
     "date-fns": "2.21.3",
+    "glob": "^7.2.0",
     "gray-matter": "4.0.3",
     "next": "latest",
     "next-mdx-remote": "^3.0.8",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@types/eslint": "^8",
+    "@types/glob": "^7",
     "@types/jest": "^26.0.23",
     "@types/node": "^15.6.0",
     "@types/prettier": "^2",
