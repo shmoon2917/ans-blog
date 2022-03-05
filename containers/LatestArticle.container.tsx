@@ -8,6 +8,7 @@ import { STYLES } from 'services/constants';
 import { Article } from 'services/types';
 import styled from 'styled-components';
 import { SpaceY } from 'styles/theme';
+import CategorySlider from './CategorySlider';
 
 interface LatestArticlsProps {
   articles: Article[];
@@ -30,16 +31,8 @@ export default function LatestArticles({ articles, categories }: LatestArticlsPr
     <LatestArticlesContainer>
       <HeaderWrapper>
         <Label type="large">최신 아티클</Label>
-        <Chip.Set<string> value={category as string} onChange={handleChipClick}>
-          <Chip value={null}>전체</Chip>
-          {categories.map((category) => (
-            <Chip value={category} key={category}>
-              {category}
-            </Chip>
-          ))}
-        </Chip.Set>
+        <CategorySlider categories={categories} selected={category as string} onChange={handleChipClick} />
       </HeaderWrapper>
-
       <div>
         {articles.map(({ slug, category, ...restProps }) => (
           <Link href={`/articles/${category}/${slug}`} key={`${category}__${slug}`} passHref>

@@ -7,7 +7,7 @@ interface HorizontalScrollShadowerProps {
   children?: ReactNode;
 }
 
-const withHorizontalScrollShadower = (Wrapper: StyledComponent<any, any, { css?: FlattenSimpleInterpolation }>) => {
+const withHorizontalScrollShadower = (Wrapper: StyledComponent<any, any, { css?: FlattenSimpleInterpolation }, never>) => {
   const Component = ({ children, wrapperStyle, scrollAreaStyle }: HorizontalScrollShadowerProps) => {
     const wrapperRef = useRef<HTMLElement>(null);
     const scrollRef = useRef<HTMLDivElement>(null);
@@ -45,10 +45,11 @@ const withHorizontalScrollShadower = (Wrapper: StyledComponent<any, any, { css?:
           setScrolledRight(true);
         }
       }
-    }, [scrollRef]);
+    }, [scrollRef, wrapperRef]);
 
+    // FIXME: Wrapper css prop 적용안됨
     return (
-      <Wrapper ref={wrapperRef} css={wrapperStyle}>
+      <Wrapper ref={wrapperRef}>
         <ScrollArea ref={scrollRef} onScroll={handleScroll} css={scrollAreaStyle}>
           {children}
         </ScrollArea>
