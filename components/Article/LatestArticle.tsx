@@ -6,7 +6,7 @@ import { Article } from 'services/types';
 import styled, { keyframes } from 'styled-components';
 import { SpaceX } from 'styles/theme';
 
-type LatestArticleProps = Omit<Article, 'slug'> & { isNew: boolean };
+type LatestArticleProps = Omit<Article, 'slug' | 'content'> & { isNew: boolean };
 
 const LatestArticle: React.FC<LatestArticleProps> = ({ category, date, title, isNew }: LatestArticleProps) => {
   return (

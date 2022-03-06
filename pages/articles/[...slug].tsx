@@ -11,31 +11,30 @@ import ArticleLayout from 'components/Layout/ArticleLayout';
 import ArticleHeader from 'components/Article/ArticleHeader';
 import ArticleComments from 'components/Article/ArticleComments';
 
-import * as Styles from './styles';
+import ArticleStyleWrapper from './styles';
 import { Article } from 'services/types';
 
 import { articlesDirectory, getArticles, getArticleByAbsolutePath } from 'lib/api';
 import { MDXComponents } from 'lib/mdxComponents';
 import imageMetadata from 'lib/rehypeImageMetadata';
 
-interface Props extends Omit<Article, 'slug' | 'content'> {
-  content?: MDXRemoteSerializeResult;
-}
+type Props = Omit<Article, 'slug'>;
 
 interface ContextParams extends ParsedUrlQuery {
   slug: string[];
 }
 
-const ArticleDetailPage = ({ content, ...rest }: Props): JSX.Element => {
+const ArticleDetailPage = (props: Props): JSX.Element => {
+  const { content, title } = props;
   return (
     <>
       <Head>
-        <title>{`${rest.title}`}</title>
+        <title>{`${title}`}</title>
       </Head>
-      <ArticleHeader {...rest} />
-      <Styles.AritlceStyleWrapper>
-        <MDXRemote {...content} components={MDXComponents} />
-      </Styles.AritlceStyleWrapper>
+      <ArticleHeader {...props} />
+      <ArticleStyleWrapper>
+        <MDXRemote {...(content as MDXRemoteSerializeResult)} components={MDXComponents} />
+      </ArticleStyleWrapper>
       <ArticleComments />
     </>
   );
@@ -52,7 +51,7 @@ export const getStaticProps: GetStaticProps<Props, ContextParams> = async ({ par
   const path = join(articlesDirectory, category, `${slug}.mdx`);
 
   const article = getArticleByAbsolutePath(path, ['title', 'category', 'date', 'content']);
-  const mdxSource = await serialize(article.content, {
+  const mdxSource = await serialize(article.content as string, {
     mdxOptions: {
       rehypePlugins: [imageMetadata],
     },

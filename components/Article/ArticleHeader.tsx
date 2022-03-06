@@ -5,7 +5,7 @@ import { STYLES } from 'services/constants';
 import { Article } from 'services/types';
 import styled from 'styled-components';
 
-type ArticleHeaderProps = Omit<Article, 'slug'>;
+type ArticleHeaderProps = Omit<Article, 'slug' | 'content'>;
 
 const ArticleHeader = ({ title, category, date }: ArticleHeaderProps): JSX.Element => {
   return (

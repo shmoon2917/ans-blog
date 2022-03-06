@@ -2,7 +2,7 @@ import { Typos } from 'components/Typo';
 import { STYLES } from 'services/constants';
 import styled from 'styled-components';
 
-export const AritlceStyleWrapper = styled.div`
+const AritlceStyleWrapper = styled.div`
   p,
   * {
     ${Typos.Body1};
@@ -164,3 +164,5 @@ export const AritlceStyleWrapper = styled.div`
     margin-right: 2px;
   }
 `;
+
+export default AritlceStyleWrapper;
