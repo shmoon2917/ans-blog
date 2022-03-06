@@ -22,7 +22,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       <GlobalStyle />
       <ThemeProvider attribute="class">
         <Head>
-          <title>ANS blog</title>
+          <title>moonerd.dev</title>
           <meta name="description" content="frontend developer ans's blog" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta name="author" content="Sangho Moon" />
