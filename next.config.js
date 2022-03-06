@@ -1,5 +1,3 @@
-const { redirect } = require('next/dist/server/api-utils');
-
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
 });
