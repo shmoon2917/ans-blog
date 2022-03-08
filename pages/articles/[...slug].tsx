@@ -25,11 +25,11 @@ interface ContextParams extends ParsedUrlQuery {
 }
 
 const ArticleDetailPage = (props: Props): JSX.Element => {
-  const { content, title } = props;
+  const { content, title: titleText } = props;
   return (
     <>
       <Head>
-        <title>{`${title}`}</title>
+        <title>{titleText}</title>
       </Head>
       <ArticleHeader {...props} />
       <ArticleStyleWrapper>
