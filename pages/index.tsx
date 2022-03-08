@@ -12,6 +12,7 @@ interface Props {
 }
 
 const Index = ({ articles, categories }: Props) => {
+  console.log('test vercel preview');
   return <LatestArticles articles={articles} categories={categories} />;
 };
 
