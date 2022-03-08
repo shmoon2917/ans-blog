@@ -15,7 +15,7 @@ jobs:
           node-version: '14'
 
       - name: Install packages
-      - uses: Borales/actions-yarn@v2.3.0
+        uses: Borales/actions-yarn@v2.3.0
         with:
           cmd: install
 
