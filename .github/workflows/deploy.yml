@@ -20,7 +20,7 @@ jobs:
           cmd: install
 
       - name: Generate sitemap
-        run: sh script/generate-sitemap.sh
+        run: sh scripts/generate-sitemap.sh
 
       - uses: Borales/actions-yarn@v2.3.0
         with:
