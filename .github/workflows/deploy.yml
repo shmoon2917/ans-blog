@@ -19,7 +19,7 @@ jobs:
         with:
           cmd: install
 
-      - name: Generate sitemap
+      - name: Generate static sitemap
         run: sh scripts/generate-sitemap.sh
 
       - uses: Borales/actions-yarn@v2.3.0
