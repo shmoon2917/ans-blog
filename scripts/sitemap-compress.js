@@ -5,7 +5,6 @@ const dirs = ['../public/sitemap'];
 
 dirs.forEach((dir) => {
   fs.readdirSync(dir).forEach((file) => {
-    console.log(file);
     if (file.endsWith('.xml')) {
       // gzip
       const fileContents = fs.createReadStream(dir + '/' + file);

@@ -17,6 +17,7 @@ const formatted = (sitemap) => prettier.format(sitemap, { parser: 'html' });
     '!../pages/_document.tsx',
     '!../pages/_error.tsx',
     '!../pages/404.tsx',
+    '!../pages/og.tsx',
     '!../pages/api/*',
   ]);
 
