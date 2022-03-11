@@ -2,7 +2,7 @@
   "name": "ans",
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "next-remote-watch ./_articles",
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc"
@@ -46,6 +46,7 @@
     "eslint": "^8.8.0",
     "eslint-config-next": "^12.0.10",
     "eslint-config-prettier": "^8.3.0",
+    "next-remote-watch": "^1.0.0",
     "prettier": "^2.5.1"
   },
   "resolutions": {
