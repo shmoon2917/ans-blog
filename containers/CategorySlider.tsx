@@ -2,6 +2,7 @@ import React from 'react';
 
 import Chip from 'components/Chip/Chip';
 import { ChipSetProps } from 'components/Chip/types';
+import { getMappedCategory } from 'services/utils';
 
 interface CategorySliderProps {
   categories: string[];
@@ -15,7 +16,7 @@ const CategorySlider = ({ categories, selected, onChange }: CategorySliderProps)
       <Chip value={null}>전체</Chip>
       {categories.map((category) => (
         <Chip value={category} key={category}>
-          {category}
+          {getMappedCategory(category)}
         </Chip>
       ))}
     </Chip.Set>

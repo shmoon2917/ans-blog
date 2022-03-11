@@ -1,8 +1,9 @@
 import { Divider } from 'components/Common/Divider';
 import { Typos } from 'components/Typo';
 import { format, parse } from 'date-fns';
-import { STYLES } from 'services/constants';
+import { CATEGORY, STYLES } from 'services/constants';
 import { Article } from 'services/types';
+import { getMappedCategory } from 'services/utils';
 import styled, { keyframes } from 'styled-components';
 import { SpaceX } from 'styles/theme';
 
@@ -13,7 +14,7 @@ const LatestArticle: React.FC<LatestArticleProps> = ({ category, date, title, is
     <Wrapper>
       <DescriptionWrapper>
         <Typos.Label type="large" style={{ color: STYLES.color.dark3 }}>
-          {category}
+          {getMappedCategory(category)}
         </Typos.Label>
         <Divider />
         <Typos.Label type="large" style={{ color: STYLES.color.dark3 }}>

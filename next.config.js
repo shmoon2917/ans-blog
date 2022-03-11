@@ -6,28 +6,13 @@ module.exports = withMDX({
   async redirects() {
     return [
       {
-        source: '/react/:path*',
-        destination: '/articles/react/:path*',
+        source: '/react/React%20hook%EC%9D%98%20lifecycle%2C%20useEffect%EB%A5%BC%20%EC%A4%91%EC%8B%AC%EC%9C%BC%EB%A1%9C',
+        destination: '/articles/react/react-hook-lifecycle',
         permanent: true,
       },
       {
-        source: '/essay/:path*',
-        destination: '/articles/essay/:path*',
-        permanent: true,
-      },
-      {
-        source: '/story/:path*',
-        destination: '/articles/story/:path*',
-        permanent: true,
-      },
-      {
-        source: '/web/:path*',
-        destination: '/articles/web/:path*',
-        permanent: true,
-      },
-      {
-        source: '/webpack/:path*',
-        destination: '/articles/webpack/:path*',
+        source: '/javascript/:path*',
+        destination: '/articles/javascript/:path*',
         permanent: true,
       },
     ];

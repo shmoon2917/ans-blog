@@ -19,15 +19,18 @@ import { MDXComponents } from 'lib/mdxComponents';
 import imageMetadata from 'lib/rehypeImageMetadata';
 import { DefaultSeoProps, NextSeo } from 'next-seo';
 import DEFAULT_SEO from 'next-seo.config';
+import { generateOpenGraphImage } from 'lib/generateOGImage';
 
-type Props = Omit<Article, 'slug'>;
+interface Props extends Omit<Article, 'slug'> {
+  ogImagePath: string | null;
+}
 
 interface ContextParams extends ParsedUrlQuery {
   slug: string[];
 }
 
 const ArticleDetailPage = (props: Props): JSX.Element => {
-  const { content, title, description } = props;
+  const { content, title, description, ogImagePath } = props;
 
   const SEO: DefaultSeoProps = {
     ...DEFAULT_SEO,
@@ -37,6 +40,7 @@ const ArticleDetailPage = (props: Props): JSX.Element => {
       ...DEFAULT_SEO.openGraph,
       title,
       description: description || title,
+      images: !!ogImagePath ? [{ url: ogImagePath }] : undefined,
     },
   };
 
@@ -69,6 +73,8 @@ export const getStaticProps: GetStaticProps<Props, ContextParams> = async ({ par
     },
   });
 
+  const ogImagePath = await generateOpenGraphImage(`/og?title=${article.title}`);
+
   return {
     props: {
       title: article.title,
@@ -76,6 +82,7 @@ export const getStaticProps: GetStaticProps<Props, ContextParams> = async ({ par
       date: format(parse(article.date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'yyyy년 M월 d일'),
       description: article?.description || '',
       content: mdxSource,
+      ogImagePath: ogImagePath || null,
     },
   };
 };

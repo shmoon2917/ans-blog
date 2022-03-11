@@ -8,6 +8,7 @@ export const articlesDirectory = join(process.cwd(), '_articles');
 
 export function getArticleByAbsolutePath(path: string, fields: ArticleField[] = []) {
   const slug = basename(path).replace(/\.mdx$/, '');
+  const category = basename(join(path, '..'));
 
   const fileContents = fs.readFileSync(path, 'utf-8');
 
@@ -27,6 +28,8 @@ export function getArticleByAbsolutePath(path: string, fields: ArticleField[] = 
       items[field] = data[field];
     }
   });
+
+  items.category = category;
 
   return items;
 }
