@@ -10,7 +10,7 @@ const ArticleComments = (): JSX.Element => {
     const utterances = document.createElement('script');
     const utterancesConfig = {
       src: 'https://utteranc.es/client.js',
-      repo: 'shmoon2917/semicolon-articles',
+      repo: 'shmoon2917/moonerd.dev',
       'issue-term': 'pathname',
       theme: 'github-light',
       crossorigin: 'anonymous',

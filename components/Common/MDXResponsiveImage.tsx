@@ -1,12 +1,17 @@
 import Image, { ImageProps } from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useIsMounted } from 'services/hooks';
 import styled, { css } from 'styled-components';
 
 const MDXResponsiveImage = (props: ImageProps) => {
+  const isMounted = useIsMounted();
+
   return (
-    <ImageWrapper style={{ maxWidth: props.width, maxHeight: props.height }}>
-      <Image {...props} alt={props.alt} layout="responsive" loading="lazy" quality={100} />;
-    </ImageWrapper>
+    isMounted && (
+      <ImageWrapper style={{ maxWidth: props.width, maxHeight: props.height }}>
+        <Image {...props} alt={props.alt} layout="responsive" loading="lazy" quality={100} />;
+      </ImageWrapper>
+    )
   );
 };
 
