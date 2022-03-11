@@ -17,7 +17,7 @@ import { Article } from 'services/types';
 import { articlesDirectory, getArticles, getArticleByAbsolutePath } from 'lib/api';
 import { MDXComponents } from 'lib/mdxComponents';
 import imageMetadata from 'lib/rehypeImageMetadata';
-import { DefaultSeo, DefaultSeoProps } from 'next-seo';
+import { DefaultSeoProps, NextSeo } from 'next-seo';
 import DEFAULT_SEO from 'next-seo.config';
 
 type Props = Omit<Article, 'slug'>;
@@ -42,7 +42,7 @@ const ArticleDetailPage = (props: Props): JSX.Element => {
 
   return (
     <>
-      <DefaultSeo {...SEO} />
+      <NextSeo {...SEO} />
       <ArticleHeader {...props} />
       <ArticleStyleWrapper>
         <MDXRemote {...(content as MDXRemoteSerializeResult)} components={MDXComponents} />
