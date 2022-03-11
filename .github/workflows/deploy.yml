@@ -23,8 +23,7 @@ jobs:
         run: sh scripts/generate-sitemap.sh
 
       - name: Check
-        run: cd public
-        run: ls
+        run: cd public && ls
 
       - uses: Borales/actions-yarn@v2.3.0
         with:
