@@ -6,6 +6,7 @@ export type Article = {
   date: string;
   category: string;
   content: string | MDXRemoteSerializeResult;
+  description?: string;
 };
 
 export type ArticleField = keyof Article;

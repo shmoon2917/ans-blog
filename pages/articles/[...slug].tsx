@@ -17,6 +17,8 @@ import { Article } from 'services/types';
 import { articlesDirectory, getArticles, getArticleByAbsolutePath } from 'lib/api';
 import { MDXComponents } from 'lib/mdxComponents';
 import imageMetadata from 'lib/rehypeImageMetadata';
+import { DefaultSeo, DefaultSeoProps } from 'next-seo';
+import DEFAULT_SEO from 'next-seo.config';
 
 type Props = Omit<Article, 'slug'>;
 
@@ -25,12 +27,22 @@ interface ContextParams extends ParsedUrlQuery {
 }
 
 const ArticleDetailPage = (props: Props): JSX.Element => {
-  const { content, title: titleText } = props;
+  const { content, title, description } = props;
+
+  const SEO: DefaultSeoProps = {
+    ...DEFAULT_SEO,
+    title,
+    description: description || title,
+    openGraph: {
+      ...DEFAULT_SEO.openGraph,
+      title,
+      description: description || title,
+    },
+  };
+
   return (
     <>
-      <Head>
-        <title>{titleText}</title>
-      </Head>
+      <DefaultSeo {...SEO} />
       <ArticleHeader {...props} />
       <ArticleStyleWrapper>
         <MDXRemote {...(content as MDXRemoteSerializeResult)} components={MDXComponents} />
@@ -50,7 +62,7 @@ export const getStaticProps: GetStaticProps<Props, ContextParams> = async ({ par
   const [category, slug] = params!.slug;
   const path = join(articlesDirectory, category, `${slug}.mdx`);
 
-  const article = getArticleByAbsolutePath(path, ['title', 'category', 'date', 'content']);
+  const article = getArticleByAbsolutePath(path, ['title', 'category', 'date', 'content', 'description']);
   const mdxSource = await serialize(article.content as string, {
     mdxOptions: {
       rehypePlugins: [imageMetadata],
@@ -62,6 +74,7 @@ export const getStaticProps: GetStaticProps<Props, ContextParams> = async ({ par
       title: article.title,
       category: article.category,
       date: format(parse(article.date, 'yyyy-MM-dd HH:mm:ss', new Date()), 'yyyy년 M월 d일'),
+      description: article?.description || '',
       content: mdxSource,
     },
   };
