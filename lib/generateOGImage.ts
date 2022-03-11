@@ -14,8 +14,6 @@ export async function generateOpenGraphImage(path: string) {
   const imagePath = `${ogImageDir}/${hash}.png`;
   const publicPath = `${baseUrl}/assets/og/${hash}.png`;
 
-  console.log(publicPath);
-
   try {
     fs.statSync(imagePath);
     return publicPath;
@@ -29,8 +27,6 @@ export async function generateOpenGraphImage(path: string) {
   await page.goto(url, { waitUntil: 'networkidle' });
   const buffer = await page.screenshot({ type: 'png' });
   await browser.close();
-
-  console.log('????');
 
   fs.mkdirSync(ogImageDir, { recursive: true });
   fs.writeFileSync(imagePath, buffer);

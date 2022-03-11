@@ -10,11 +10,6 @@ module.exports = withMDX({
         destination: '/articles/react/react-hook-lifecycle',
         permanent: true,
       },
-      {
-        source: '/javascript/:path*',
-        destination: '/articles/javascript/:path*',
-        permanent: true,
-      },
     ];
   },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],

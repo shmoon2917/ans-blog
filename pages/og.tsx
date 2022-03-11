@@ -10,7 +10,9 @@ export default function OpenGraph() {
 
   return (
     <Wrapper>
-      <Typos.Heading1 style={{ fontSize: '70px', lineHeight: 1.3, marginBottom: '60px', padding: '0 100px' }}>{title}</Typos.Heading1>
+      <Typos.Heading1 style={{ fontSize: '70px', fontWeight: 600, lineHeight: 1.3, marginBottom: '60px', padding: '0 100px' }}>
+        {title}
+      </Typos.Heading1>
       <Image src="/assets/logo.svg" priority width={152} height={27} alt="" />
     </Wrapper>
   );

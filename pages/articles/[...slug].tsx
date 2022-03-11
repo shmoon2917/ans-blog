@@ -10,10 +10,9 @@ import React from 'react';
 import ArticleLayout from 'components/Layout/ArticleLayout';
 import ArticleHeader from 'components/Article/ArticleHeader';
 import ArticleComments from 'components/Article/ArticleComments';
+import ArticleStyleWrapper from 'components/Common/ArticleStyleWrapper';
 
-import ArticleStyleWrapper from './styles';
 import { Article } from 'services/types';
-
 import { articlesDirectory, getArticles, getArticleByAbsolutePath } from 'lib/api';
 import { MDXComponents } from 'lib/mdxComponents';
 import imageMetadata from 'lib/rehypeImageMetadata';
