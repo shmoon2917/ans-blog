@@ -29,6 +29,9 @@ jobs:
         with:
           cmd: postbuild
 
+      - name: Ping sitemap to Google search console
+        run: sh scripts/ping-sitemap.sh
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
