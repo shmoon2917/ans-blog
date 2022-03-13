@@ -11,6 +11,7 @@ export default function OpenGraph() {
 
   useEffect(() => {
     setTitle(searchParams.get('title') as string);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

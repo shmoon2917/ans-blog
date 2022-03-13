@@ -2,10 +2,10 @@ import { format, parse } from 'date-fns';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
-import Head from 'next/head';
 import { join } from 'path';
 import { ParsedUrlQuery } from 'querystring';
 import React from 'react';
+import { generateOpenGraphImage } from 'lib/generateOGImage';
 
 import ArticleLayout from 'components/Layout/ArticleLayout';
 import ArticleHeader from 'components/Article/ArticleHeader';
@@ -18,7 +18,6 @@ import { MDXComponents } from 'lib/mdxComponents';
 import imageMetadata from 'lib/rehypeImageMetadata';
 import { DefaultSeoProps, NextSeo } from 'next-seo';
 import DEFAULT_SEO from 'next-seo.config';
-import { generateOpenGraphImage } from 'lib/generateOGImage';
 
 interface Props extends Omit<Article, 'slug'> {
   ogImagePath: string | null;
@@ -71,7 +70,6 @@ export const getStaticProps: GetStaticProps<Props, ContextParams> = async ({ par
       rehypePlugins: [imageMetadata],
     },
   });
-
   const ogImagePath = await generateOpenGraphImage(`/og?title=${article.title}`);
 
   return {
