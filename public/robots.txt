@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://moonerd.dev/sitemap.xml
