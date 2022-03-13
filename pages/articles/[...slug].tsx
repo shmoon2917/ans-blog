@@ -72,8 +72,7 @@ export const getStaticProps: GetStaticProps<Props, ContextParams> = async ({ par
     },
   });
 
-  const ogImagePath = '';
-  // await generateOpenGraphImage(`/og?title=${article.title}`);
+  const ogImagePath = await generateOpenGraphImage(`/og?title=${article.title}`);
 
   return {
     props: {

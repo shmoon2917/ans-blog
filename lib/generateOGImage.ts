@@ -18,7 +18,7 @@ export async function generateOpenGraphImage(path: string) {
     fs.statSync(imagePath);
     return publicPath;
   } catch (error: any) {
-    console.log(`generating og image for ${path}`);
+    console.log(`no image on this path, generating og image for ${path}`);
   }
 
   const browser = await chromium.launch({ headless: true });
