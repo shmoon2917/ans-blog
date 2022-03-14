@@ -1,7 +1,6 @@
 import React from 'react';
 import MainLayout from 'components/Layout/MainLayout';
-import SpecialArticles from 'containers/SpecialArticle.container';
-import LatestArticles from 'containers/LatestArticle.container';
+import ArticleCardContainer from 'containers/ArticleCard.container';
 import { GetServerSideProps, GetStaticProps } from 'next';
 import { Article } from 'services/types';
 import { getArticles, getCategories } from 'lib/api';
@@ -12,7 +11,7 @@ interface Props {
 }
 
 const Index = ({ articles, categories }: Props) => {
-  return <LatestArticles articles={articles} categories={categories} />;
+  return <ArticleCardContainer articles={articles} categories={categories} />;
 };
 
 Index.getLayout = function getLayout(page: React.ReactElement) {
@@ -23,7 +22,7 @@ export default Index;
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) => {
   const targetCategory = query?.category as string;
-  const articles = getArticles(['date', 'slug', 'title', 'category'], targetCategory);
+  const articles = getArticles(['date', 'slug', 'description', 'title', 'category'], targetCategory);
   const categories = getCategories();
 
   return {

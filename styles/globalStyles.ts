@@ -35,6 +35,7 @@ export const GlobalStyle = createGlobalStyle`
     a:link,
     a:visited {
         color: unset;
+        -webkit-tap-highlight-color: transparent;
         text-decoration: none;
     }
 
@@ -59,6 +60,11 @@ export const GlobalStyle = createGlobalStyle`
     ol, ul {
         list-style: none;
     };
+
+    li {
+        display: list-item;
+        text-align: -webkit-match-parent;
+    }
 
     blockquote, q {
         quotes: none;

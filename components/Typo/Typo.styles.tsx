@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const Heading1Style = css`
   font-size: 40px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 54px;
 `;
 
@@ -12,7 +12,7 @@ export const Heading1 = styled.h1`
 
 export const Heading2Style = css`
   font-size: 32px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 44px;
 `;
 
@@ -22,7 +22,7 @@ export const Heading2 = styled.h2`
 
 export const Heading3Style = css`
   font-size: 28px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 38px;
 `;
 
@@ -44,6 +44,7 @@ export const Heading5Style = css`
   font-size: 20px;
   font-weight: 400;
   line-height: 28px;
+  margin: 0;
 `;
 
 export const Heading5 = styled.h5`
@@ -68,32 +69,44 @@ export const Lead = styled.p`
 
 export const Small = styled.p`
   font-weight: normal;
-  font-size: 12;
+  font-size: 12px;
   line-height: 14px;
 `;
 
 export const Tiny = styled.p`
   font-weight: bold;
-  font-size: 10;
+  font-size: 10px;
   line-height: 12px;
 `;
 
-export const Body1 = styled.p`
+export const Body1Style = css`
   font-weight: normal;
-  font-size: 16;
+  font-size: 16px;
   line-height: 28px;
+`;
+
+export const Body2Style = css`
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 28px;
+`;
+
+export const Body1 = styled.p`
+  ${Body1Style};
 `;
 
 export const Body2 = styled.p`
-  font-weight: normal;
-  font-size: 14;
+  ${Body2Style};
+`;
+
+export const BlockQuoteStyle = css`
+  font-size: 16px;
+  font-style: italic;
   line-height: 28px;
 `;
 
-export const BlockQuotes = styled.blockquote`
-  font-weight: semi-bold;
-  font-size: 20;
-  line-height: 28px;
+export const BlockQuote = styled.blockquote`
+  ${BlockQuoteStyle};
 `;
 
 export const LabelSmallStyle = css`

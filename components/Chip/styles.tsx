@@ -20,57 +20,33 @@ export const ChipSetWrapper = styled.ul<{ css?: FlattenSimpleInterpolation }>`
   ${({ css }) => css};
 `;
 
-export const ChipWrapper = styled.li<{ selected: boolean; disabled: boolean | undefined }>`
+export const ChipWrapper = styled.li<{ selected: boolean }>`
   border-radius: 100px;
   display: inline-block;
-  padding: 3px 10px;
+  padding: 8px 16px;
   cursor: pointer;
   flex-shrink: 0;
+  background-color: ${STYLES.color.greyscale50};
+  color: ${STYLES.color.greyscale950};
+  transition: background-color 200ms;
 
   &:hover {
-    background-color: ${STYLES.color.light3};
-    color: ${STYLES.color.dark2};
+    background-color: ${STYLES.color.greyscale100};
   }
 
   &:active,
   &:focus {
-    background-color: ${STYLES.color.light1};
-    color: ${STYLES.color.dark2};
-  }
-
-  ${STYLES.media.mobile} {
-    &:hover {
-      background-color: unset;
-      color: unset;
-    }
-
-    &:active,
-    &:focus {
-      background-color: unset;
-      color: unset;
-    }
+    background-color: ${STYLES.color.greyscale200};
   }
 
   ${({ selected }) =>
-    selected
-      ? css`
-          pointer-events: none;
-          background-color: ${STYLES.color.dark1};
-          color: ${STYLES.color.light4};
-        `
-      : css`
-          background-color: ${STYLES.color.light2};
-          color: ${STYLES.color.dark2};
-        `}
-
-  ${({ disabled }) =>
-    disabled &&
+    selected &&
     css`
       pointer-events: none;
-      cursor: not-allowed;
-      background-color: ${STYLES.color.light3};
-      color: ${STYLES.color.dark4};
+      background-color: ${STYLES.color.greyscale800};
+      color: ${STYLES.color.light4};
     `}
 
   ${Typos.LabelLargeStyle};
+  line-height: 18px;
 `;

@@ -10,10 +10,12 @@ interface CategorySliderProps {
   onChange: ChipSetProps<string>['onChange'];
 }
 
+export const DEFAULT_CHIP_CAPTION = '전체';
+
 const CategorySlider = ({ categories, selected, onChange }: CategorySliderProps) => {
   return (
     <Chip.Set value={selected} onChange={onChange}>
-      <Chip value={null}>전체</Chip>
+      <Chip value={null}>{DEFAULT_CHIP_CAPTION}</Chip>
       {categories.map((category) => (
         <Chip value={category} key={category}>
           {getMappedCategory(category)}

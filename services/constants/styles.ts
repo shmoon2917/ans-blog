@@ -1,3 +1,5 @@
+import { CATEGORY } from '.';
+
 export const STYLES = {
   color: {
     primaryDefault: '#3e7bfa',
@@ -14,6 +16,18 @@ export const STYLES = {
     light2: '#f2f2f5',
     light3: '#fafafc',
     light4: '#ffffff',
+    greyscale950: '#0d0d0d',
+    greyscale900: '#1a1a1a',
+    greyscale800: '#333333',
+    greyscale700: '#4d4d4d',
+    greyscale600: '#666666',
+    greyscale500: '#808080',
+    greyscale400: '#999999',
+    greyscale300: '#b3b3b3',
+    greyscale200: '#cccccc',
+    greyscale100: '#e5e5e5',
+    greyscale50: '#f2f2f2',
+    greyscale25: '#f9f9f9',
     red0: '#e53535',
     red1: '#ff3b3b',
     red2: '#ff5c5c',
@@ -92,6 +106,11 @@ export const STYLES = {
   media: {
     mobile: '@media screen and (max-width:767px)' as const,
     tablet: '@media screen and (max-width:1279px)' as const,
-    pc: '@media screen and (max-width:1440px)' as const,
+  },
+  iconFilter: {
+    javascript: 'invert(97%) sepia(59%) saturate(3870%) hue-rotate(339deg) brightness(101%) contrast(94%);',
+    react: 'invert(81%) sepia(21%) saturate(1537%) hue-rotate(160deg) brightness(97%) contrast(103%);',
+    me: 'invert(37%) sepia(90%) saturate(2321%) hue-rotate(147deg) brightness(100%) contrast(101%);',
+    web: 'invert(38%) sepia(77%) saturate(827%) hue-rotate(188deg) brightness(108%) contrast(91%);',
   },
 } as const;

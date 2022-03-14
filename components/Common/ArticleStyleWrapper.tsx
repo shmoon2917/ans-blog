@@ -3,57 +3,38 @@ import { STYLES } from 'services/constants';
 import styled from 'styled-components';
 
 const AritlceStyleWrapper = styled.div`
-  p,
-  * {
-    ${Typos.Body1};
-    color: ${STYLES.color.dark1};
+  grid-column: span 3 / span 3;
+  margin-right: 55px;
+
+  *:first-child {
+    margin-top: 0px;
   }
 
-  address,
-  article,
-  aside,
-  blockquote,
-  canvas,
-  dd,
-  div,
-  dl,
-  dt,
-  fieldset,
-  figcaption,
-  figure,
-  footer,
-  form,
-  h1,
-  h1,
-  h3,
-  h4,
-  h5,
-  h6,
-  header,
-  hr,
-  li,
-  main,
-  nav,
-  noscript,
-  ol,
   p,
-  pre,
-  section,
-  table,
-  tfoot,
-  ul,
-  video {
-    margin-bottom: 16px;
-    color: ${STYLES.color.dark1};
-    ${Typos.Body1};
+  li,
+  a,
+  blockquote {
+    margin-top: 2rem;
+    ${Typos.Body1Style};
+    word-break: break-word;
+    color: ${STYLES.color.greyscale900};
   }
 
   h1 {
-    ${Typos.Heading1Style}
+    margin-top: 2.64em;
+    margin-bottom: -0.37em;
+    ${Typos.Heading1Style};
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 30px;
   }
 
   h2 {
-    ${Typos.Heading2Style}
+    margin-top: 1.87em;
+    margin-bottom: -0.31em;
+    ${Typos.Heading2Style};
+    line-height: 24px;
+    font-size: 20px;
   }
 
   h3 {
@@ -67,47 +48,97 @@ const AritlceStyleWrapper = styled.div`
   h1,
   h2,
   h3,
-  h4,
-  h5,
-  h6 {
-    margin-bottom: 16px;
-    margin-top: 24px;
-  }
-
-  ol,
-  ul {
-    padding-left: 1.4em;
-    margin-bottom: 16px;
-    list-style: revert;
-  }
-
-  li {
-    margin: 4px 0;
-    list-style: outside;
-  }
-
-  li > ol,
-  li > ul {
-    padding-left: 16px;
-    margin-bottom: 4px;
-  }
-
-  a {
-    color: ${STYLES.color.blue1};
-    text-decoration: none;
-
-    &:hover,
-    &:active {
-      text-decoration: underline;
+  h4 {
+    + p {
+      margin-top: 1.16em;
     }
   }
 
+  p,
+  li {
+    margin-bottom: -0.46em;
+    letter-spacing: -0.003em;
+  }
+
+  p:first-child {
+    margin-top: 0;
+  }
+
+  li {
+    margin-top: 1.14em;
+    margin-left: 30px;
+    margin-bottom: -0.46em;
+    padding-left: 0px;
+
+    &:first-child {
+      margin-top: 2.14em;
+    }
+
+    pre {
+      margin-top: 1.14em;
+    }
+  }
+
+  menu,
+  ol,
+  ul {
+    padding: 0;
+    list-style: none;
+    list-style-image: none;
+
+    ol {
+      & > li {
+        list-style-type: lower-alpha;
+        margin-top: 0.94em;
+
+        &:first-child {
+          margin-top: 0.54em;
+        }
+      }
+    }
+
+    ul {
+      & > li {
+        list-style-type: circle;
+        margin-top: 0.94em;
+
+        &:first-child {
+          margin-top: 0.54em;
+        }
+      }
+    }
+  }
+
+  ol {
+    & > li {
+      list-style-type: decimal;
+    }
+  }
+
+  ul {
+    & > li {
+      list-style-type: disc;
+    }
+  }
+
+  a,
+  a:link,
+  a:active,
+  a:visited {
+    color: ${STYLES.color.blue1};
+    text-decoration: underline;
+  }
+
   blockquote {
-    border-left: 4px solid;
-    border-left-color: ${STYLES.color.dark3};
-    margin: 0 0 0 16px;
+    margin-left: -20px;
+    padding-left: 20px;
+    box-shadow: inset 3px 0 0 0 rgb(41 41 41);
+
     > p {
-      color: ${STYLES.color.dark3};
+      ${Typos.BlockQuoteStyle};
+      letter-spacing: -0.003em;
+      margin-bottom: 0px;
+      color: ${STYLES.color.greyscale900};
     }
   }
 
@@ -120,40 +151,29 @@ const AritlceStyleWrapper = styled.div`
     overflow: scroll;
   }
 
-  tt,
   code {
     font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
     font-size: 12px;
+    line-height: 1.18;
+    letter-spacing: -0.022em;
+    font-size: 14px;
   }
 
   pre {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
-    font-size: 13px;
-    word-wrap: normal;
-  }
+    margin-top: 56px;
 
-  p,
-  blockquote,
-  ul,
-  ol,
-  dl,
-  table,
-  pre,
-  details {
-    margin-top: 0px;
-    margin-bottom: 16px;
+    > div {
+      padding: 20px;
+      overflow-x: auto;
+    }
   }
 
   img {
     width: 100%;
-  }
 
-  hr {
-    height: 1;
-    border: none;
-    background-color: ${STYLES.color.light1};
+    &[alt='thumbnail'] {
+      margin-top: 0;
+    }
   }
 
   &:not(pre, div) > code {

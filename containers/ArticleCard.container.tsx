@@ -1,5 +1,4 @@
-import LatestArticle from 'components/Article/LatestArticle';
-import Chip from 'components/Chip/Chip';
+import ArticleCard from 'components/Article/ArticleCard';
 import { ChipSetProps } from 'components/Chip/types';
 import { Typos } from 'components/Typo';
 import { differenceInCalendarDays, format, parse } from 'date-fns';
@@ -30,14 +29,14 @@ export default function LatestArticles({ articles, categories }: LatestArticlsPr
   };
 
   const renderArticles = () => {
-    return articles.map(({ slug, date, title, category }) => {
+    return articles.map(({ slug, date, title, category, description }) => {
       const parsedDate = parse(date, 'yyyy-MM-dd HH:mm:ss', new Date());
       const isNew = differenceInCalendarDays(new Date(), parsedDate) <= ARTICLE_NEW_DAYS;
 
       return (
         <Link href={`/articles/${category}/${slug}`} key={`${category}__${slug}`} passHref>
           <a title={title}>
-            <LatestArticle title={title} category={category} date={date} isNew={isNew} />
+            <ArticleCard title={title} category={category} date={date} isNew={isNew} description={description} />
           </a>
         </Link>
       );
@@ -45,26 +44,22 @@ export default function LatestArticles({ articles, categories }: LatestArticlsPr
   };
 
   return (
-    <LatestArticlesContainer>
+    <Wrapper>
       <HeaderWrapper>
-        <Label type="large">최신 아티클</Label>
+        <Label type="large">TOPICS</Label>
         <CategorySlider categories={categories} selected={category as string} onChange={handleChipClick} />
       </HeaderWrapper>
       <div>{renderArticles()}</div>
-    </LatestArticlesContainer>
+    </Wrapper>
   );
 }
 
-const LatestArticlesContainer = styled.section`
+const Wrapper = styled.section`
+  width: 100%;
   ${SpaceY(12)}
-  padding: 12px ${STYLES.padding.default}px 36px;
   margin: 0 auto;
   max-width: 1140px;
   box-sizing: border-box;
-
-  ${STYLES.media.mobile} {
-    padding: 12px ${STYLES.padding.mobile}px 36px;
-  }
 `;
 
 const Label = styled(Typos.Label)`
@@ -79,5 +74,5 @@ const Label = styled(Typos.Label)`
 const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  padding: 0 40px;
 `;

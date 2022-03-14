@@ -11,13 +11,15 @@ import ArticleLayout from 'components/Layout/ArticleLayout';
 import ArticleHeader from 'components/Article/ArticleHeader';
 import ArticleComments from 'components/Article/ArticleComments';
 import ArticleStyleWrapper from 'components/Common/ArticleStyleWrapper';
+import ArticleAside from 'components/Article/ArticleAside';
 
 import { Article } from 'services/types';
 import { articlesDirectory, getArticles, getArticleByAbsolutePath } from 'lib/api';
-import { MDXComponents } from 'lib/mdxComponents';
+import { MDXComponents } from 'components/Common/mdxComponents';
 import imageMetadata from 'lib/rehypeImageMetadata';
 import { DefaultSeoProps, NextSeo } from 'next-seo';
 import DEFAULT_SEO from 'next-seo.config';
+import styled from 'styled-components';
 
 interface Props extends Omit<Article, 'slug'> {
   ogImagePath: string | null;
@@ -28,7 +30,7 @@ interface ContextParams extends ParsedUrlQuery {
 }
 
 const ArticleDetailPage = (props: Props): JSX.Element => {
-  const { content, title, description, ogImagePath } = props;
+  const { content, title, date, category, description, ogImagePath } = props;
 
   const SEO: DefaultSeoProps = {
     ...DEFAULT_SEO,
@@ -48,8 +50,9 @@ const ArticleDetailPage = (props: Props): JSX.Element => {
       <ArticleHeader {...props} />
       <ArticleStyleWrapper>
         <MDXRemote {...(content as MDXRemoteSerializeResult)} components={MDXComponents} />
+        <ArticleComments />
       </ArticleStyleWrapper>
-      <ArticleComments />
+      <ArticleAside date={date} category={category} />
     </>
   );
 };
