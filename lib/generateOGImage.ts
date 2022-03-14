@@ -26,7 +26,7 @@ export async function generateOpenGraphImage(path: string) {
   await page.setViewportSize({ width: 1200, height: 630 });
 
   await page.setDefaultNavigationTimeout(0);
-  await page.goto(url);
+  await page.goto(url, { waitUntil: 'load' });
 
   const buffer = await page.screenshot({ type: 'png' });
   await browser.close();
