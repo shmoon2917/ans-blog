@@ -101,7 +101,6 @@ export const Body2 = styled.p`
 
 export const BlockQuoteStyle = css`
   font-size: 16px;
-  font-style: italic;
   line-height: 28px;
 `;
 

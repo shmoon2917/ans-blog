@@ -58,6 +58,10 @@ const AritlceStyleWrapper = styled.div`
   li {
     margin-bottom: -0.46em;
     letter-spacing: -0.003em;
+
+    + pre {
+      margin-top: 36px;
+    }
   }
 
   p:first-child {

@@ -4,21 +4,12 @@ import styled, { css } from 'styled-components';
 import { SpaceX } from 'styles/theme';
 
 export const Wrapper = styled.header<{ scrolled: boolean }>`
-  max-width: 1024px;
-  margin: 0 auto;
-  grid-area: header;
+  width: 100%;
 
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  display: flex;
-  align-items: center;
-
-  padding: 20px ${STYLES.padding.default}px;
-  ${STYLES.media.mobile} {
-    padding: 20px ${STYLES.padding.mobile}px;
-  }
 
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(3px);
@@ -32,29 +23,43 @@ export const Wrapper = styled.header<{ scrolled: boolean }>`
     `}
 `;
 
+export const RowWrapper = styled.div`
+  width: 100%;
+  max-width: ${({ theme }) => theme.width['3xl']};
+  margin: 0 auto;
+  padding: ${({ theme }) => theme.padding._4} ${({ theme }) => theme.padding._8};
+
+  ${({ theme }) => theme.responsive.xl} {
+    max-width: ${({ theme }) => theme.width['5xl']};
+  }
+
+  ${({ theme }) => theme.responsive.md} {
+    padding: ${({ theme }) => theme.padding._4} ${({ theme }) => theme.padding._4};
+  }
+
+  display: flex;
+  align-items: center;
+`;
+
 export const RightSectionWrapper = styled.nav`
   display: flex;
   justify-content: flex-end;
+
   align-items: center;
   flex: 1;
-
-  ${SpaceX(25)}
-  ${STYLES.media.mobile} {
-    ${SpaceX(15)}
-  }
 `;
 
 export const LogoWrapper = styled.div`
   position: relative;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
+
   cursor: pointer;
   transition: transform 200ms;
-  z-index: 10;
 
-  ${STYLES.media.mobile} {
-    width: 130px;
-    height: 23px;
+  ${({ theme }) => theme.responsive.md} {
+    width: 60px;
+    height: 60px;
   }
 
   &:hover {
@@ -90,19 +95,28 @@ export const NavWrapper = styled.ul`
   display: flex;
   font-size: 16px;
 
-  ${SpaceX(25)}
-  ${STYLES.media.mobile} {
-    ${SpaceX(15)}
-  }
+  ${SpaceX(12)}
 `;
 
 export const NavItem = styled.li`
+  padding: ${({ theme }) => theme.padding._2} ${({ theme }) => theme.padding._3};
+
   cursor: pointer;
-  color: ${STYLES.color.dark2};
+  color: ${STYLES.color.greyscale500};
   font-family: ${STYLES.font.msa};
-  transition: color ease-out 200ms;
+  transition-property: background-color, color;
+  transition-timing-function: ease-out;
+  transition-duration: 200ms;
+  border-radius: 5px;
 
   &:hover {
-    color: ${STYLES.color.dark3};
+    color: ${STYLES.color.greyscale900};
+    background-color: ${STYLES.color.greyscale50};
+  }
+
+  &:active,
+  &:focus {
+    color: ${STYLES.color.greyscale950};
+    background-color: ${STYLES.color.greyscale100};
   }
 `;
