@@ -7,7 +7,7 @@ import { ParsedUrlQuery } from 'querystring';
 import React from 'react';
 import { generateOpenGraphImage } from 'lib/generateOGImage';
 
-import ArticleLayout from 'components/Layout/ArticleLayout';
+import Layout from 'components/Layout/Layout';
 import ArticleHeader from 'components/Article/ArticleHeader';
 import ArticleComments from 'components/Article/ArticleComments';
 import ArticleStyleWrapper from 'components/Common/ArticleStyleWrapper';
@@ -20,6 +20,7 @@ import imageMetadata from 'lib/rehypeImageMetadata';
 import { DefaultSeoProps, NextSeo } from 'next-seo';
 import DEFAULT_SEO from 'next-seo.config';
 import styled from 'styled-components';
+import { SpaceY } from 'styles/theme';
 
 interface Props extends Omit<Article, 'slug'> {
   ogImagePath: string | null;
@@ -45,20 +46,47 @@ const ArticleDetailPage = (props: Props): JSX.Element => {
   };
 
   return (
-    <>
+    <Wrapper>
       <NextSeo {...SEO} />
       <ArticleHeader {...props} />
-      <ArticleStyleWrapper>
-        <MDXRemote {...(content as MDXRemoteSerializeResult)} components={MDXComponents} />
-        <ArticleComments />
-      </ArticleStyleWrapper>
+      <ArticleWrapper>
+        <ArticleStyleWrapper>
+          <MDXRemote {...(content as MDXRemoteSerializeResult)} components={MDXComponents} />
+          <ArticleComments />
+        </ArticleStyleWrapper>
+      </ArticleWrapper>
       <ArticleAside date={date} category={category} />
-    </>
+    </Wrapper>
   );
 };
 
+const Wrapper = styled.article`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  ${({ theme }) => theme.responsive.xl} {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+`;
+
+const ArticleWrapper = styled.div`
+  order: 1;
+  ${SpaceY(16)};
+  grid-column: span 3 / span 3;
+
+  ${({ theme }) => theme.responsive.md} {
+    margin-right: ${({ theme }) => theme.padding._8};
+  }
+
+  ${({ theme }) => theme.responsive.xl} {
+    order: 0;
+  }
+`;
+
 ArticleDetailPage.getLayout = function getLayout(page: React.ReactElement) {
-  return <ArticleLayout>{page}</ArticleLayout>;
+  return <Layout>{page}</Layout>;
 };
 
 export default ArticleDetailPage;

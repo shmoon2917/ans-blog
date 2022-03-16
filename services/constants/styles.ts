@@ -112,5 +112,6 @@ export const STYLES = {
     react: 'invert(81%) sepia(21%) saturate(1537%) hue-rotate(160deg) brightness(97%) contrast(103%);',
     me: 'invert(37%) sepia(90%) saturate(2321%) hue-rotate(147deg) brightness(100%) contrast(101%);',
     web: 'invert(38%) sepia(77%) saturate(827%) hue-rotate(188deg) brightness(108%) contrast(91%);',
+    seo: 'invert(46%) sepia(57%) saturate(737%) hue-rotate(179deg) brightness(101%) contrast(92%);',
   },
 } as const;

@@ -1,10 +1,17 @@
 import { Typos } from 'components/Typo';
 import { STYLES } from 'services/constants';
 import styled from 'styled-components';
+import { SpaceY } from 'styles/theme';
 
 const AritlceStyleWrapper = styled.div`
-  grid-column: span 3 / span 3;
-  margin-right: 55px;
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 65ch;
+
+  ${({ theme }) => theme.responsive.lg} {
+    font-size: 1.125rem;
+    line-height: 1.78;
+  }
 
   *:first-child {
     margin-top: 0px;
@@ -16,7 +23,8 @@ const AritlceStyleWrapper = styled.div`
   blockquote {
     margin-top: 2rem;
     ${Typos.Body1Style};
-    word-break: break-word;
+
+    word-break: keep-all;
     color: ${STYLES.color.greyscale900};
   }
 

@@ -18,12 +18,27 @@ const ArticleHeader = ({ title }: ArticleHeaderProps): JSX.Element => {
 export default ArticleHeader;
 
 const Wrapper = styled.div`
-  margin-bottom: 40px;
-  grid-column: span 4 / span 4;
+  margin-top: ${({ theme }) => theme.margin._16};
+  padding-bottom: ${({ theme }) => theme.padding._4};
+
+  ${({ theme }) => theme.responsive.md} {
+    margin-right: ${({ theme }) => theme.margin._8};
+  }
+
+  ${({ theme }) => theme.responsive.xl} {
+    padding-bottom: ${({ theme }) => theme.padding._0};
+    margin-bottom: ${({ theme }) => theme.margin._8};
+    grid-column: 1 / span 3;
+  }
 `;
 
 const Title = styled(Typos.Heading1)`
-  font-weight: 700;
-  line-height: 54px;
-  margin-top: 60px;
+  color: ${STYLES.color.greyscale950};
+  letter-spacing: -0.025em;
+  font-weight: 800;
+
+  ${({ theme }) => theme.responsive.xl} {
+    line-height: 1.25;
+    font-size: 3rem;
+  }
 `;
