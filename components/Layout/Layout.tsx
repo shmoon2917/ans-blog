@@ -19,30 +19,21 @@ const MainLayout: React.FC = ({ children }) => {
 export default MainLayout;
 
 export const Wrapper = styled.div`
-  min-height: 100vh;
   display: grid;
-  grid-template-rows: 1fr minmax(auto, 100%) 100px;
-  grid-template-areas:
-    'header'
-    'body'
-    'footer';
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
 `;
 
 export const ContentsWrapper = styled.main`
-  grid-area: body;
-  max-width: 1024px;
-  flex: 1;
   width: 100%;
-  margin: 0px auto;
-  margin-top: 80px;
-  padding: 12px ${STYLES.padding.default}px;
+  max-width: ${({ theme }) => theme.width['3xl']};
+  margin: 100px auto 0;
 
-  ${STYLES.media.mobile} {
-    margin-top: 64px;
-    padding: 12px ${STYLES.padding.mobile}px;
+  ${({ theme }) => theme.responsive.xl} {
+    max-width: ${({ theme }) => theme.width['5xl']};
   }
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${({ theme }) => theme.responsive.md} {
+    padding: 0 ${({ theme }) => theme.padding._4};
+  }
 `;

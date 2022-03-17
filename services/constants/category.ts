@@ -17,4 +17,8 @@ export const CATEGORY = {
     title: 'web',
     badgeColor: '#4285F4',
   },
+  seo: {
+    title: 'seo',
+    badgecolor: '#458CF5',
+  },
 };

@@ -5,6 +5,8 @@ import { AppProps } from 'next/app';
 import { GlobalStyle } from 'styles/globalStyles';
 import { DefaultSeo } from 'next-seo';
 import SEO from 'next-seo.config';
+import theme from 'styles/theme';
+import { ThemeProvider } from 'styled-components';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -20,8 +22,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <>
       <GlobalStyle />
+
       <DefaultSeo {...SEO} />
-      {getLayout(<Component {...pageProps} />)}
+      <ThemeProvider theme={theme}>{getLayout(<Component {...pageProps} />)}</ThemeProvider>
     </>
   );
 }

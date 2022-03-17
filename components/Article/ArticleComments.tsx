@@ -26,13 +26,11 @@ const ArticleComments = (): JSX.Element => {
     };
   }, []);
 
-  return <div className="article-comments" ref={wrapperRef} />;
+  return <Wrapper className="article-comments" ref={wrapperRef} />;
 };
 
 export default ArticleComments;
 
 const Wrapper = styled.div`
-  .utterances {
-    max-width: 100%;
-  }
+  margin-top: ${({ theme }) => theme.margin._10};
 `;

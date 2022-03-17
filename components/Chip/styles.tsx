@@ -3,29 +3,30 @@ import { STYLES } from 'services/constants';
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 import { SpaceX } from 'styles/theme';
 
-export const ChipSetWrapper = styled.ul<{ css?: FlattenSimpleInterpolation }>`
-  position: relative;
-  overflow: hidden;
-
+export const ChipSetWrapper = styled.ul`
+  flex: 1;
   display: flex;
-  overflow: scroll;
-  ${SpaceX(8)};
+  justify-content: center;
 
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
+  position: relative;
+  overflow-x: auto;
+
+  -webkit-overflow-scrolling: touch;
+  ${SpaceX(12)};
+
+  ${({ theme }) => theme.responsive.md} {
+    justify-content: flex-start;
+    ${SpaceX(8)};
   }
-
-  ${({ css }) => css};
 `;
 
 export const ChipWrapper = styled.li<{ selected: boolean }>`
   border-radius: 100px;
   display: inline-block;
-  padding: 8px 16px;
+  padding: ${({ theme }) => theme.padding._2} ${({ theme }) => theme.padding._3};
   cursor: pointer;
   flex-shrink: 0;
+
   background-color: ${STYLES.color.greyscale50};
   color: ${STYLES.color.greyscale950};
   transition: background-color 200ms;
@@ -42,11 +43,18 @@ export const ChipWrapper = styled.li<{ selected: boolean }>`
   ${({ selected }) =>
     selected &&
     css`
-      pointer-events: none;
       background-color: ${STYLES.color.greyscale800};
       color: ${STYLES.color.light4};
+
+      &:hover {
+        background-color: ${STYLES.color.greyscale900};
+      }
     `}
 
-  ${Typos.LabelLargeStyle};
+  font-size: 0.9rem;
   line-height: 18px;
+
+  ${({ theme }) => theme.responsive.md} {
+    padding: ${({ theme }) => theme.padding._2} ${({ theme }) => theme.padding._3};
+  }
 `;

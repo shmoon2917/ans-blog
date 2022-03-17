@@ -1,5 +1,5 @@
 import React from 'react';
-import MainLayout from 'components/Layout/MainLayout';
+import Layout from 'components/Layout/Layout';
 import ArticleCardContainer from 'containers/ArticleCard.container';
 import { GetServerSideProps, GetStaticProps } from 'next';
 import { Article } from 'services/types';
@@ -15,7 +15,7 @@ const Index = ({ articles, categories }: Props) => {
 };
 
 Index.getLayout = function getLayout(page: React.ReactElement) {
-  return <MainLayout>{page}</MainLayout>;
+  return <Layout>{page}</Layout>;
 };
 
 export default Index;

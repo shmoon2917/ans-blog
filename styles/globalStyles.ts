@@ -26,9 +26,13 @@ export const GlobalStyle = createGlobalStyle`
         min-height: 100vh;
     };
 
-    article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    main, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, ul, li {
         display: block;
     };
+
+    blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
+        margin: 0;
+    }
 
     a,
     a:active,
@@ -59,6 +63,8 @@ export const GlobalStyle = createGlobalStyle`
 
     ol, ul {
         list-style: none;
+        margin: 0;
+        padding: 0;
     };
 
     li {
