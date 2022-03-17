@@ -65,6 +65,12 @@ const Wrapper = styled.article`
   display: flex;
   flex-direction: column;
 
+  padding: 0 ${({ theme }) => theme.padding._4};
+
+  ${({ theme }) => theme.responsive.md} {
+    padding: 0;
+  }
+
   ${({ theme }) => theme.responsive.xl} {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));

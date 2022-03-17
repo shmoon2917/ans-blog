@@ -15,6 +15,8 @@ export const Wrapper = styled.header<{ scrolled: boolean }>`
   backdrop-filter: blur(3px);
   z-index: 100;
 
+  padding: 0;
+
   transition: box-shadow cubic-bezier(0.4, 0, 0.2, 1) 400ms;
   ${({ scrolled }) =>
     scrolled &&
@@ -27,16 +29,17 @@ export const RowWrapper = styled.div`
   width: 100%;
   max-width: ${({ theme }) => theme.width['3xl']};
   margin: 0 auto;
-  padding: ${({ theme }) => theme.padding._4} ${({ theme }) => theme.padding._8};
+  padding: ${({ theme }) => theme.padding._3} ${({ theme }) => theme.padding._4};
 
   ${({ theme }) => theme.responsive.xl} {
     max-width: ${({ theme }) => theme.width['5xl']};
   }
 
-  ${({ theme }) => theme.responsive.md} {
-    padding: ${({ theme }) => theme.padding._4} ${({ theme }) => theme.padding._4};
-  }
+  display: flex;
+  align-items: center;
+`;
 
+export const LeftSectionWrapper = styled.nav`
   display: flex;
   align-items: center;
 `;
@@ -67,18 +70,53 @@ export const LogoWrapper = styled.div`
   }
 `;
 
+export const GoBackButton = styled.button`
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 10px 0;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: ${STYLES.color.greyscale25};
+  }
+
+  &:focus,
+  &:active {
+    background-color: ${STYLES.color.greyscale50};
+  }
+
+  img {
+    width: 15px;
+    height: 15px;
+    transform: rotate(180deg);
+    filter: invert(42%) sepia(0%) saturate(356%) hue-rotate(169deg) brightness(91%) contrast(83%);
+  }
+`;
+
 export const LogoText = styled.span<{ active?: boolean }>`
   position: relative;
+  max-width: ${({ theme }) => theme.width.md};
 
   font-family: ${STYLES.font.msa};
-  ${Typos.Heading3Style};
+
+  font-size: 1.25rem;
   font-weight: 600;
+  line-height: 3.1rem;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   opacity: 0;
   transform: translateX(-20px);
   transition-property: opacity, transform;
   transition-duration: 200ms;
   transition-timing-function: ease-out;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   z-index: 5;
   margin-left: 5px;
@@ -89,6 +127,15 @@ export const LogoText = styled.span<{ active?: boolean }>`
       opacity: 1;
       transform: translateX(10px);
     `}
+
+  ${({ theme }) => theme.responsive.lg} {
+    max-width: ${({ theme }) => theme.width.xl};
+    font-size: 1.5rem;
+  }
+
+  ${({ theme }) => theme.responsive.xl} {
+    max-width: ${({ theme }) => theme.width['2xl']};
+  }
 `;
 
 export const NavWrapper = styled.ul`

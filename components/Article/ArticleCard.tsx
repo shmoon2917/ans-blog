@@ -17,7 +17,7 @@ const LatestArticle: React.FC<LatestArticleProps> = ({ category, description, da
       <GridWrapper>
         <LeftSectionWrapper>
           <ImageWrapper category={category as keyof typeof CATEGORY}>
-            <Image src={`/assets/badge/${category.toLowerCase()}.svg`} layout="fill" alt="category__badge" priority />
+            <Image src={`/assets/badge/${category.toLowerCase()}.svg`} layout="fill" alt="category__badge" />
           </ImageWrapper>
           <TextWrapper>
             <Typos.Heading2>{title}</Typos.Heading2>
@@ -90,7 +90,7 @@ const Wrapper = styled.article`
   outline: 2px solid transparent;
   outline-offset: 2px;
 
-  padding: ${({ theme }) => theme.padding._8};
+  padding: ${({ theme }) => theme.padding._4};
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 200ms;
@@ -134,11 +134,11 @@ const TextWrapper = styled.div`
 
   ${Typos.Heading2} {
     line-height: 1.375;
-    font-size: 1.675rem;
+    font-size: 1.4rem;
 
     ${({ theme }) => theme.responsive.xl} {
       line-height: 1.375;
-      font-size: 2rem;
+      font-size: 1.7rem;
     }
   }
 
@@ -150,15 +150,12 @@ const TextWrapper = styled.div`
     letter-spacing: -0.025em;
 
     ${({ theme }) => theme.responsive.xl} {
-      font-size: 1.125rem;
+      font-size: 1.105rem;
       line-height: 2rem;
-      letter-spacing: -0.025em;
     }
 
     ${({ theme }) => theme.responsive.md} {
       line-height: 1.75rem;
-      font-size: 1rem;
-      letter-spacing: -0.025em;
     }
   }
 `;

@@ -68,12 +68,8 @@ const Label = styled(Typos.Label)`
   display: none;
   font-size: 1rem;
 
-  ${({ theme }) => theme.responsive.lg} {
-  }
-
   ${({ theme }) => theme.responsive.md} {
     display: inline-block;
-    font-size: 1.125rem;
     width: 60px;
   }
 `;

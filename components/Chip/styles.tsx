@@ -23,7 +23,7 @@ export const ChipSetWrapper = styled.ul`
 export const ChipWrapper = styled.li<{ selected: boolean }>`
   border-radius: 100px;
   display: inline-block;
-  padding: 12px 24px;
+  padding: ${({ theme }) => theme.padding._2} ${({ theme }) => theme.padding._3};
   cursor: pointer;
   flex-shrink: 0;
 
@@ -51,10 +51,10 @@ export const ChipWrapper = styled.li<{ selected: boolean }>`
       }
     `}
 
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 18px;
 
   ${({ theme }) => theme.responsive.md} {
-    padding: 8px 16px;
+    padding: ${({ theme }) => theme.padding._2} ${({ theme }) => theme.padding._3};
   }
 `;

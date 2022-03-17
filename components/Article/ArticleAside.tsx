@@ -35,8 +35,7 @@ const ArticleAside = ({ category, date }: Props): JSX.Element => {
 export default ArticleAside;
 
 const Wrapper = styled.aside`
-  margin-bottom: ${({ theme }) => theme.padding._16};
-  margin-right: ${({ theme }) => theme.padding._10};
+  margin-bottom: ${({ theme }) => theme.margin._16};
 
   ${({ theme }) => theme.responsive.xl} {
     margin-bottom: 0px;
