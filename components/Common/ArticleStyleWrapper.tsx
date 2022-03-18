@@ -25,24 +25,43 @@ const AritlceStyleWrapper = styled.div`
     ${Typos.Body1Style};
 
     word-break: keep-all;
-    color: ${STYLES.color.greyscale900};
+    color: ${STYLES.color.greyscale950};
+
+    ${({ theme }) => theme.responsive.lg} {
+      letter-spacing: -0.003em;
+      line-height: 30px;
+      font-size: 18px;
+    }
   }
 
   h1 {
-    margin-top: 2.64em;
+    margin-top: 2.5em;
     margin-bottom: -0.37em;
-    ${Typos.Heading1Style};
+    color: ${STYLES.color.greyscale950};
+
     font-weight: 600;
-    font-size: 24px;
-    line-height: 30px;
+
+    ${({ theme }) => theme.responsive.lg} {
+      margin-top: 2.6em;
+      letter-spacing: 0px;
+      line-height: 30px;
+      font-size: 26px;
+    }
   }
 
   h2 {
-    margin-top: 1.87em;
+    letter-spacing: -0.022em;
+    line-height: 1.18;
     margin-bottom: -0.31em;
-    ${Typos.Heading2Style};
-    line-height: 24px;
-    font-size: 20px;
+
+    font-weight: 600;
+
+    ${({ theme }) => theme.responsive.lg} {
+      margin-top: 1.9em;
+      letter-spacing: 0px;
+      line-height: 26px;
+      font-size: 22px;
+    }
   }
 
   h3 {
@@ -58,7 +77,22 @@ const AritlceStyleWrapper = styled.div`
   h3,
   h4 {
     + p {
-      margin-top: 1.16em;
+      margin-top: 0.86em;
+    }
+
+    + pre {
+      margin-top: 2em;
+    }
+  }
+
+  p {
+    margin-top: 2em;
+    margin-bottom: -0.46em;
+
+    ${({ theme }) => theme.responsive.lg} {
+      letter-spacing: -0.003em;
+      line-height: 30px;
+      font-size: 18px;
     }
   }
 
@@ -137,7 +171,6 @@ const AritlceStyleWrapper = styled.div`
   a:link,
   a:active,
   a:visited {
-    color: ${STYLES.color.blue1};
     text-decoration: underline;
   }
 
@@ -145,13 +178,6 @@ const AritlceStyleWrapper = styled.div`
     margin-left: -20px;
     padding-left: 20px;
     box-shadow: inset 3px 0 0 0 rgb(41 41 41);
-
-    > p {
-      ${Typos.BlockQuoteStyle};
-      letter-spacing: -0.003em;
-      margin-bottom: 0px;
-      color: ${STYLES.color.greyscale900};
-    }
   }
 
   code,
@@ -164,6 +190,11 @@ const AritlceStyleWrapper = styled.div`
   }
 
   code {
+    background: #e9ecef;
+    padding: 0.2rem 0;
+    margin-right: 0.2rem;
+    border-radius: 3px;
+
     font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
     font-size: 12px;
     line-height: 1.18;
@@ -186,14 +217,6 @@ const AritlceStyleWrapper = styled.div`
     &[alt='thumbnail'] {
       margin-top: 0;
     }
-  }
-
-  &:not(pre, div) > code {
-    background-color: ${STYLES.color.light1};
-    color: ${STYLES.color.dark1};
-    border-radius: 4px;
-    padding: 2px 4px;
-    margin-right: 2px;
   }
 `;
 

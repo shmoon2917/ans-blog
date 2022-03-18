@@ -8,27 +8,12 @@
   xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
 >
   <url>
-    <loc>https://moonerd.dev/articles/javascript/event-loop</loc>
-    <lastmod>2022-03-14T17:20:26.331Z</lastmod>
-  </url>
-
-  <url>
     <loc>https://moonerd.dev/articles/react/react-hook-lifecycle</loc>
-    <lastmod>2022-03-14T17:20:26.331Z</lastmod>
-  </url>
-
-  <url>
-    <loc>https://moonerd.dev/articles/me/react-hook-lifecycle</loc>
-    <lastmod>2022-03-14T17:20:26.332Z</lastmod>
-  </url>
-
-  <url>
-    <loc>https://moonerd.dev/articles/web/react-hook-lifecycle</loc>
-    <lastmod>2022-03-14T17:20:26.332Z</lastmod>
+    <lastmod>2022-03-18T18:01:07.707Z</lastmod>
   </url>
 
   <url>
     <loc>https://moonerd.dev/</loc>
-    <lastmod>2022-03-14T17:20:26.332Z</lastmod>
+    <lastmod>2022-03-18T18:01:07.707Z</lastmod>
   </url>
 </urlset>

@@ -1,16 +1,30 @@
-import { Divider } from 'components/Common/Divider';
-import { Typos } from 'components/Typo';
-import React from 'react';
-import { STYLES } from 'services/constants';
-import { Article } from 'services/types';
+import React, { useCallback, useContext, useEffect, useReducer, useRef, useState } from 'react';
 import styled from 'styled-components';
+
+import { Typos } from 'components/Typo';
+
+import { STYLES } from 'services/constants';
+import { useIntersectionObserver } from 'services/hooks';
+import { Article } from 'services/types';
+import { TitleIntersectCtx } from 'services/contexts';
 
 type ArticleHeaderProps = Omit<Article, 'slug' | 'content'>;
 
 const ArticleHeader = ({ title }: ArticleHeaderProps): JSX.Element => {
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const { setTitle } = useContext(TitleIntersectCtx);
+
+  const entry = useIntersectionObserver(titleRef, {});
+  const isVisible = !!entry?.isIntersecting;
+
+  useEffect(() => {
+    if (isVisible) setTitle('');
+    else setTitle(title);
+  }, [isVisible, title, setTitle]);
+
   return (
     <Wrapper>
-      <Title>{title}</Title>
+      <Title ref={titleRef}>{title}</Title>
     </Wrapper>
   );
 };

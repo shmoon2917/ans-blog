@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { throttle } from 'services/utils';
 
 export function useScrolled() {
   const [scrolled, setScrolled] = useState(false);
@@ -6,12 +7,10 @@ export function useScrolled() {
   useEffect(() => {
     const listener = () => {
       const scrollY = window.scrollY;
-
-      window.requestAnimationFrame(() => {
-        setScrolled(scrollY > 0);
-      });
+      setScrolled(scrollY > 0);
     };
-    window.addEventListener('scroll', listener);
+
+    window.addEventListener('scroll', throttle(listener, 200));
 
     return () => {
       window.removeEventListener('scroll', listener);
