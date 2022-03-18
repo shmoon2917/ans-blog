@@ -10,40 +10,17 @@ import { TitleIntersectCtx } from 'services/contexts';
 
 type ArticleHeaderProps = Omit<Article, 'slug' | 'content'>;
 
-function intersectionReducer(state: boolean, action: { type: 'INTERSECT' | 'INIT' }) {
-  switch (action.type) {
-    case 'INTERSECT':
-      return true;
-    case 'INIT':
-      return false;
-    default:
-      return state;
-  }
-}
-
 const ArticleHeader = ({ title }: ArticleHeaderProps): JSX.Element => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const { setTitle } = useContext(TitleIntersectCtx);
-  const [wasIntersected, dispatch] = useReducer(intersectionReducer, false);
 
-  // const observer = new IntersectionObserver(
-  //   ([{ isIntersecting }]) => {
-  //     if (isIntersecting) {
-  //       console.log('현재 교차');
-  //       dispatch({ type: 'INTERSECT' });
-  //       setTitle('');
-  //     } else if (wasIntersected) {
-  //       console.log('교차 끝');
-  //       dispatch({ type: 'INIT' });
-  //       setTitle?.(title);
-  //     }
-  //   },
-  //   {
-  //     root: null,
-  //     rootMargin: '0px',
-  //     threshold: 1.0,
-  //   },
-  // );
+  const entry = useIntersectionObserver(titleRef, {});
+  const isVisible = !!entry?.isIntersecting;
+
+  useEffect(() => {
+    if (isVisible) setTitle('');
+    else setTitle(title);
+  }, [isVisible, title, setTitle]);
 
   return (
     <Wrapper>

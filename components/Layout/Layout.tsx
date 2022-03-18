@@ -6,12 +6,12 @@ import styled from 'styled-components';
 import Footer from './Footer';
 
 const MainLayout: React.FC = ({ children }) => {
-  const [title, setTitle] = useState('');
+  const [postTitle, setPostTitle] = useState('');
 
   return (
     <>
       <Wrapper>
-        <TitleIntersectCtx.Provider value={{ title, setTitle }}>
+        <TitleIntersectCtx.Provider value={{ title: postTitle, setTitle: setPostTitle }}>
           <Header />
           <ContentsWrapper>{children}</ContentsWrapper>
           <Footer />
