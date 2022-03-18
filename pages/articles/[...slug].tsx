@@ -31,7 +31,7 @@ interface ContextParams extends ParsedUrlQuery {
 }
 
 const ArticleDetailPage = (props: Props): JSX.Element => {
-  const { content, title, date, category, description, ogImagePath } = props;
+  const { content, title, date, category, description, readingTime, ogImagePath } = props;
 
   const SEO: DefaultSeoProps = {
     ...DEFAULT_SEO,
@@ -55,7 +55,7 @@ const ArticleDetailPage = (props: Props): JSX.Element => {
           <ArticleComments />
         </ArticleStyleWrapper>
       </ArticleWrapper>
-      <ArticleAside date={date} category={category} />
+      <ArticleAside date={date} category={category} readingTime={readingTime} />
     </Wrapper>
   );
 };
@@ -101,7 +101,7 @@ export const getStaticProps: GetStaticProps<Props, ContextParams> = async ({ par
   const [category, slug] = params!.slug;
   const path = join(articlesDirectory, category, `${slug}.mdx`);
 
-  const article = getArticleByAbsolutePath(path, ['title', 'category', 'date', 'content', 'description']);
+  const article = getArticleByAbsolutePath(path, ['title', 'category', 'date', 'content', 'description', 'readingTime']);
   const mdxSource = await serialize(article.content as string, {
     mdxOptions: {
       rehypePlugins: [imageMetadata],
@@ -117,6 +117,7 @@ export const getStaticProps: GetStaticProps<Props, ContextParams> = async ({ par
       description: article?.description || '',
       content: mdxSource,
       ogImagePath: ogImagePath || null,
+      readingTime: article.readingTime,
     },
   };
 };

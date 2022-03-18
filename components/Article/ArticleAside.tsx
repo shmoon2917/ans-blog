@@ -9,7 +9,7 @@ import { SpaceX } from 'styles/theme';
 
 type Props = Omit<Article, 'slug' | 'title' | 'content' | 'description'>;
 
-const ArticleAside = ({ category, date }: Props): JSX.Element => {
+const ArticleAside = ({ category, date, readingTime }: Props): JSX.Element => {
   return (
     <Wrapper>
       <StickyWrapper>
@@ -22,10 +22,12 @@ const ArticleAside = ({ category, date }: Props): JSX.Element => {
             <dt>작성 날짜</dt>
             <dd>{date}</dd>
           </DescriptionWrapper>
-          <DescriptionWrapper>
-            <dt>읽는 데</dt>
-            <dd>10분 정도 소요됩니다 :)</dd>
-          </DescriptionWrapper>
+          {readingTime && (
+            <DescriptionWrapper>
+              <dt>소요시간</dt>
+              <dd>{readingTime}분</dd>
+            </DescriptionWrapper>
+          )}
         </DlContainer>
       </StickyWrapper>
     </Wrapper>
