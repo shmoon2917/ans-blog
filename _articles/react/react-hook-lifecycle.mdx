@@ -1,118 +1,599 @@
 ---
 title: React hook의 lifecycle, useEffect를 중심으로
-date: '2022-03-04 17:43:03'
-description: React hook의 lifecycle을 알아봅시다.
+date: '2021-12-08 00:00:00'
+description: 이 글에서는 useEffect 콜백과 cleanUp이 일어나는 순서를 알아보겠습니다. 또한 앱이 마운트, 마운트 해제, 업데이트되는 각 상황이 어떻게 다른지 예제 코드를 통해 확인해보려 합니다.
+readingTime: '20'
 ---
-
-![thumbnail {653x265}](/assets/articles/react-thumbnail.png 'This is a thumbnail')
 
 > [The Lifecycle of React Hooks Component](https://blog.bhanuteja.dev/the-lifecycle-of-react-hooks-component) 글의 내용을 번역한 것입니다.
 
-# Mount
+이 글에서는 `useEffect` 콜백과 cleanUp이 일어나는 순서를 알아보겠습니다.
+또한 앱이 마운트, 마운트 해제, 업데이트되는 각 상황이 어떻게 다른지 예제 코드를 통해 확인해보려 합니다.
 
-이 단계는 컴포넌트가 처음으로 페이지에 마운트되는 단계입니다. 이 단계에서 <a href="https://moonerd.dev" target="_blank">hook</a> 의 흐름은 다음과 같습니다.
+![thumbnail {761x969}](/assets/articles/react-hook-lifecycle.png ' ')
 
-## Lazy initializers 실행
+> 이 이미지의 출처는 [github.com/donavon/hook-flow](https://github.com/donavon/hook-flow)입니다.
+>
+> 이 글에서 사용할 예제는 [Kent C. Dodds.](https://kentcdodds.com/)의 `React Hooks` 워크샵의 내용 중 일부입니다.
+>
+> 이 글의 마지막에 관련된 링크들을 첨부해놓았습니다. [Kent C. Dodds.](https://kentcdodds.com/)가 제공하는 더 상세한 설명들도 확인해보시길 바랍니다.
 
-1. JavaScript Interface(JSI)
-   1. k
-   2. c
-2. Fabric
-   - articles
-   - b
+모든 컴포넌트에는 세 단계가 존재합니다.
 
-- Turbo Modules
-- CodeGen
+1. Mount
+2. Update
+3. Unmount
 
-useState에 직접적인 값 대신에 넘겨지는 함수를 게으른 초기화(lazy initializaers) 라고 합니다. 게으른 초기화 함수는 오직 첫 마운트 단계에서만 실행되고, 이 후에 다시 리렌더링이 된다면 이 함수의 실행은 무시됩니다.
-렌더링
+# Mount - Hooks Flow
+
+이 단계는 컴포넌트가 처음으로 페이지에 마운트되는 단계입니다. 이 단계에서 hook들의 흐름은 다음과 같습니다.
+
+1. Lazy initializers 실행
+
+   - useState에 직접적인 값 대신에 넘겨지는 함수를 `게으른 초기화(lazy initializaers)` 라고 합니다. 게으른 초기화 함수는 오직 첫 마운트 단계에서만 실행되고, 이 후에 다시 리렌더링이 된다면 이 함수의 실행은 무시됩니다.
+
+2. 렌더링
+
+   - 컴포넌트 함수 자체를 호출하는 과정입니다. e.g. App(props)
+   - 모든 `useState` hook과 다른 값들이 표현되는 때입니다.
+   - 이름이 렌더링이긴 하지만, 이 시점에서 DOM이 변경되지는 않습니다.
+
+3. 리액트의 DOM 업데이트
+
+   - DOM을 업데이트하는 것은 브라우저가 스크린을 그리는 것과는 다릅니다.
+
+4. Layout Effects 실행
+
+   - useEffect랑은 다르게, 브라우저가 화면에 DOM을 그리기(페인트) 전에 이펙트를 수행합니다.
+
+5. 브라우저의 스크린 그리기(페인트)
+
+6. Effects 실행
+
+`useState`에 직접적인 값 대신에 넘겨지는 함수를 게으른 초기화(lazy initializaers) 라고 합니다. 게으른 초기화 함수는 오직 첫 마운트 단계에서만 실행되고, 이 후에 다시 리렌더링이 된다면 이 함수의 실행은 무시됩니다.
+
+# Update - Hooks Flow
+
+이 단계는 컴포넌트가 업데이트되는 단계입니다. 이 업데이트는 다음과 같은 이유들로 발생합니다:
+
+- 부모 컴포넌트의 재렌더링
+- 컴포넌트 State 변경
+- Context 변경
+
+이 단계에서 hook의 흐름은 다음과 같습니다.
+
+1. 렌더링
+
+2. 리액트의 DOM 업데이트
+
+3. Layout Effects Cleanup 실행
+   - `useLayoutEffect`도 `useEffect`처럼 클린업 단계가 존재합니다.
+4. Layout Effects 실행
+5. 브라우저의 스크린 그리기
+6. Effects Cleanup 실행
+7. Effects 실행
+
+보시다시피 마운트 단계에서 과정과 꽤나 유사하지만, Layout Effects와 Effects의 `Cleanup`이 실행된다는 것이 차이점입니다.
+
+# Unmount
+
+이 단계는 컴포넌트가 페이지로부터 언마운트되는 단계입니다. 이 단계에서 hook의 흐름은 다음과 같습니다.
+
+1. Layout Effects Cleanup 실행
+
+2. Effects 실행
+
+이 단계에서는 Cleanup만이 실행됩니다.
 
 ---
 
+# useEffect callback 의 유형
+
+예시를 살펴 보기 전에 앞서, 빠르게 `useEffect` 콜백의 세 가지 다른 유형을 살펴봅시다.
+
+1. 의존성이 없는 useEffect
+2. 빈 의존성을 가지는 useEffect
+3. 의존성을 가지는 useEffect
+
+## 1. 의존성이 없는 useEffect
+
 ```ts
-import React from "react";
+useEffect(() => {
+  console.log('useEffect(() => {})'); // Line 1
+  return () => {
+    console.log('useEffect(() => {}) cleanup'); // Line 2
+  };
+});
+```
+
+이 `useEffect`는 의존성이 없습니다.
+
+- 콜백 함수(Line 1)는 다음의 경우에 호출됩니다.
+  - 컴포넌트가 마운트될 때
+  - 컴포넌트가 업데이트될 때
+- 클린업 함수(Line 2)는 다음의 경우에 호출됩니다.
+  - 컴포넌트가 업데이트될 때
+  - 컴포넌트가 언마운트될 때
+
+## 2. 빈 의존성을 가지는 useEffect
+
+```ts
+useEffect(() => {
+  console.log('useEffect(() => {}, [])'); // Line 1
+  return () => {
+    console.log('useEffect(() => {}, []) cleanup'); // Line 2
+  };
+}, []);
+```
+
+이 `useEffect`는 의존성 배열을 받지만 해당 배열이 비어있습니다.
+
+- 콜백 함수(Line 1)는 다음의 경우에 호출됩니다.
+  - 컴포넌트가 마운트될 때
+- 클린업 함수(Line 2)는 다음의 경우에 호출됩니다.
+  - 컴포넌트가 언마운트될 때
+
+**Note:** 이 `useEffect` 콜백은 빈 의존성 배열을 가지므로 컴포넌트가 업데이트될 때는 실행되지 않습니다.
+
+## 3. 의존성을 가지는 useEffect
+
+```ts
+useEffect(() => {
+  console.log('useEffect(() => {}, [count])'); // Line 1
+  return () => {
+    console.log('useEffect(() => {}, [count]) cleanup'); // Line 2
+  };
+}, [count]);
+```
+
+이 `useEffect` 는 하나 또는 그 이상의 의존성을 가집니다.
+
+- 콜백 함수(Line 1)는 다음의 경우에 호출됩니다.
+  - 컴포넌트가 마운트될 때
+  - 의존하는 값이 변경될 때 (예시의 경우는 count값이 바뀔 때)
+- 클린업 함수(Line 2)는 다음의 경우에 호출됩니다.
+  - 의존하는 값이 변경될 때 (예시의 경우는 count값이 바뀔 때)
+  - 컴포넌트가 언마운트될 때
+
+---
+
+# Example
+
+이제 다음 예시를 보며 좀 더 상세하게 Lifecycle 순서를 살펴봅시다.
+
+## App 컴포넌트
+
+```typescript
+import React from 'react';
+
+function App() {
+  console.log('App: render start');
+
+  const [showChild, setShowChild] = React.useState(() => {
+    console.log('App: useState(() => false)');
+    return false;
+  });
+
+  console.log(`App: showChild = ${showChild}`);
+
+  React.useEffect(() => {
+    console.log('App: useEffect(() => {})');
+    return () => {
+      console.log('App: useEffect(() => {}) cleanup');
+    };
+  });
+
+  React.useEffect(() => {
+    console.log('App: useEffect(() => {}, [])');
+    return () => {
+      console.log('App: useEffect(() => {}, []) cleanup');
+    };
+  }, []);
+
+  React.useEffect(() => {
+    console.log('App: useEffect(() => {}, [showChild])');
+    return () => {
+      console.log('App: useEffect(() => {}, [showChild]) cleanup');
+    };
+  }, [showChild]);
+
+  const element = (
+    <>
+      <label>
+        <input type="checkbox" checked={showChild} onChange={(e) => setShowChild(e.target.checked)} />
+        show child
+      </label>
+      <div>{showChild ? <Child /> : null}</div>
+    </>
+  );
+
+  console.log('App: render end');
+
+  return element;
+}
+```
+
+# Child 컴포넌트
+
+```typescript
+import React from 'react';
 
 function Child() {
-  console.log("Child: render start");
+  console.log('Child: render start');
 
   const [count, setCount] = React.useState(() => {
-    console.log("Child: useState(() => 0)");
+    console.log('Child: useState(() => 0)');
     return 0;
   });
 
   console.log(`Child: count = ${count}`);
 
   React.useEffect(() => {
-    console.log("Child: useEffect(() => {})");
+    console.log('Child: useEffect(() => {})');
     return () => {
-      console.log("Child: useEffect(() => {}) cleanup");
+      console.log('Child: useEffect(() => {}) cleanup');
     };
   });
 
   React.useEffect(() => {
-    console.log("Child: useEffect(() => {}, [])");
+    console.log('Child: useEffect(() => {}, [])');
     return () => {
-      console.log("Child: useEffect(() => {}, []) cleanup");
+      console.log('Child: useEffect(() => {}, []) cleanup');
     };
   }, []);
 
   React.useEffect(() => {
-    console.log("Child: useEffect(() => {}, [count])");
+    console.log('Child: useEffect(() => {}, [count])');
     return () => {
-      console.log("Child: useEffect(() => {}, [count]) cleanup");
+      console.log('Child: useEffect(() => {}, [count]) cleanup');
     };
   }, [count]);
 
-  const element = (
-    <button onClick={() => setCount((previousCount) => previousCount + 1)}>
-      {count}
-    </button>
-  );
+  const element = <button onClick={() => setCount((previousCount) => previousCount + 1)}>{count}</button>;
+
+  console.log('    Child: render end');
+
+  return element;
+}
 ```
 
-컴포넌트 함수 자체를 호출하는 과정입니다. e.g. App(props)
-모든 useState hook과 다른 값들이 표현되는 때입니다.
-이름이 렌더링이긴 하지만, 이 시점에서 DOM이 변경되지는 않습니다.
-리액트의 DOM 업데이트
+> 코드 실행은 [sandbox](https://dc9w0.csb.app/)에서 확인해보세요!
 
-DOM을 업데이트하는 것은 브라우저가 스크린을 그리는 것과는 다릅니다.
-Layout Effects 실행
+작성한 코드에 대한 요약입니다.
 
-다음 글에서 layout effect에 대해 다룰 것입니다.
-브라우저의 스크린 그리기
+- 우리는 `App` 컴포넌트와 `Child` 컴포넌트를 작성했습니다.
+- `App` 컴포넌트는 `Child` 컴포넌트를 보여줄지 말지를 결정하는`showChild` state를 가집니다.
+- `Child` 컴포넌트는 `count` state를 가집니다.
+- `Child` 컴포넌트는 `count` 값을 변경하는 버튼을 가집니다.
+- 두 컴포넌트 모두 세 가지 유형의 `useEffect` 콜백을 가집니다.
+  - 의존성이 없는 useEffect
+  - 빈 의존성을 가지는 useEffect
+  - 의존성을 가지는 useEffect
 
-Effects 실행
+**이제 가장 중요한 단계**입니다! 아래의 각 단계에서 흐름이 어떻게 보여지는지 살펴보겠습니다 :)
 
-Update
-이 단계는 컴포넌트가 업데이트되는 단계입니다. 이 업데이트는 다음과 같은 이유들로 발생합니다:
+1. `App`이 마운트되는 때
+2. `App`의 state(showChild)를 변경하여 `Child`가 마운트되는 때
+3. `Child`의 state(count)를 변경하여 `Child`가 업데이트되는 때
+4. `App`의 state(showChild)를 변경하여 `Child`가 언마운트되는 때
 
-부모 컴포넌트의 재렌더링
-컴포넌트 State 변경
-Context 변경
-이 단계에서 hook의 흐름은 다음과 같습니다.
+# 1. App이 마운트되는 때
 
-렌더링
+여기서 `App`은 마운트 단계에 있으므로 다이어그램에서 순서는 다음과 같아야 합니다.
 
-리액트의 DOM 업데이트
+1. ✅ App의 Lazy initializers 실행
 
-Layout Effects Cleanup 실행
+2. ✅ App의 렌더링 실행
 
-useLayoutEffect도 useEffect처럼 클린업 단계가 존재합니다.
-Layout Effects 실행
+3. ✅ 리액트의 App에 대한 DOM 업데이트
 
-브라우저의 스크린 그리기
+4. ❌ App의 Layout Effects Cleanup 실행
 
-Effects Cleanup 실행
+5. ✅ App의 Layout Effects 실행
 
-Effects 실행
+6. ✅ 브라우저의 App에 대한 스크린 그리기
 
-보시다시피, 마운트 단계에서 과정과 유사하지만, Layout Effects와 Effects Cleanup이 실행된다는 것이 차이점입니다.
+7. ❌ App의 Effects Cleanup 실행
 
-Unmount
-이 단계는 컴포넌트가 페이지로부터 언마운트되는 단계입니다. 이 단계에서 hook의 흐름은 다음과 같습니다.
+8. ✅ App의 Effects 실행
 
-Layout Effects Cleanup 실행
+`App`이 마운트될 때, 우리는 다음의 로그들을 확인할 수 있습니다.
 
-Effects 실행
+1. App: render start
 
-이 단계에서는 Cleanup만이 실행됩니다.
+   - App 렌더링을 시작합니다.
+
+2. App: useState(() => false)
+
+   - App의 lazy initializer 함수가 실행됩니다.
+
+3. App: showChild = false
+
+   - App을 렌더링 중입니다.
+
+4. App: render end
+
+   - App의 렌더링이 종료됩니다.
+
+5. App: useEffect(() => {})
+
+   - App의 의존성이 없는 `useEffect`가 실행됩니다.
+
+6. App: useEffect(() => {}, [])
+
+   - App의 빈 의존성을 가지는 `useEffect`가 실행됩니다.
+   - 이 것은 `App` 컴포넌트의 마운트 단계이기 때문에 호출되며, 마운트 단계에서는 모든 useEffect 콜백이 호출됩니다.
+
+7. App: useEffect(() => {}, [showChild])
+   - App의 `showChild` 값에 의존성을 가지는 `useEffect`가 실행됩니다.
+   - 이 역시 마운트 단계에서는 모든 useEffect 콜백이 호출되므로 정상적인 실행입니다.
+
+**Notes**
+
+- 컴포넌트의 첫 마운트 때는 모든 `useEffect` 콜백들이 실행됩니다.
+- `useEffect` 콜백들은 표시되는 순서대로 호출됩니다.
+  - ✨ **의존성 x -> 빈 의존성 -> 의존성 o**
+
+# 2. App의 state를 변경하여 Child가 마운트되는 때
+
+`show child` 체크박스를 클릭해봅시다.
+클릭 시 `Child` 컴포넌트는 마운트 단계에 오르고, `App` 컴포넌트는 업데이트 단계를 가질 것입니다.
+
+다이어그램에 따라 `Child`의 순서는 다음과 같습니다.
+
+1. ✅ Child의 Lazy initializers 실행
+
+2. ✅ Child의 렌더링 실행
+
+3. ✅ 리액트의 Child에 대한 DOM 업데이트
+
+4. ❌ Child의 Layout Effects Cleanup 실행
+
+5. ✅ Child의 Layout Effects 실행
+
+6. ✅ 브라우저의 Child에 대한 스크린 그리기
+
+7. ❌ Child의 Effects Cleanup 실행
+
+8. ✅ Child의 Effects 실행
+
+그리고 `App`의 경우는 다음과 같습니다.
+
+1. ❌ App의 Lazy initializers 실행
+
+2. ✅ App의 렌더링 실행
+
+3. ✅ 리액트의 App에 대한 DOM 업데이트
+
+4. ✅ App의 Layout Effects Cleanup 실행
+
+5. ✅ App의 Layout Effects 실행
+
+6. ✅ 브라우저의 App에 대한 스크린 그리기
+
+7. ✅ App의 Effects Cleanup 실행
+
+8. ✅ App의 Effects 실행
+
+이번엔 찍힌 로그 순서를 확인해봅시다.
+
+1. App: render start
+
+   - App 렌더링을 시작합니다.
+   - Lazy initializers는 이번엔 **실행되지 않습니다.** 첫 마운트 시에만 실행됩니다.
+
+2. App: showChild = true
+
+   - App을 렌더링 중입니다.
+
+3. App: render end
+   - App의 렌더링이 종료됩니다.
+4. Child: render start
+
+   - Child가 마운트되고, 렌더링을 시작합니다.
+
+5. Child: useState(() => 0)
+
+   - Child가 마운트 단계에 올랐기 때문에, Child의 lazy initiailizer가 실행됩니다.
+
+6. Child: count = 0
+
+   - Child를 렌더링 중입니다.
+
+7. Child: render end
+
+   - Child의 렌더링이 종료됩니다.
+
+8. App: useEffect(() => {}) cleanup
+
+   - App의 의존성이 없는 useEffect cleanUp이 실행됩니다.
+
+9. App: useEffect(() => {}, [showChild]) cleanup
+
+   - App의 `showChild` 값에 의존성을 가지는 useEffect cleanup이 실행됩니다.
+   - 이 cleanup은 `showChild` 값이 변경되었기 때문에 실행됩니다.
+
+10. Child: useEffect(() => {})
+
+- Child의 의존성이 없는 useEffect가 실행됩니다.
+
+11: Child: useEffect(() => {}, [])
+
+- Child의 빈 의존성을 가지는 useEffect가 실행됩니다.
+- 이 것은 Child 컴포넌트의 마운트 단계이기 때문에 호출되며, 마운트 단계에서는 해당 컴포넌트의 모든 useEffect 콜백이 호출됩니다.
+
+12. Child: useEffect(() => {}, [count])
+
+- Child의 `count` 값에 의존성을 가지는 useEffect가 실행됩니다.
+- 이 역시 마운트 단계에서는 모든 useEffect 콜백이 호출되므로 정상적인 실행입니다.
+
+13. App: useEffect(() => {})
+
+- App의 의존성이 없는 useEffect가 실행됩니다.
+
+14. App: useEffect(() => {}, [showChild]);
+
+- App의 `showChild` 값에 의존성을 가지는 useEffect가 실행됩니다.
+- 이 cleanup은 `showChild`의 값이 변경되었기 때문에 실행됩니다.
+
+**Notes**
+
+- `App` 컴포넌트를 렌더링하는 동안에도 우리는 `<Child />` 마크업을 가지고 있습니다. 그러나 `App`의 렌더링이 종료된 후에야 `Child` 렌더링이 시작되는 것을 볼 수 있습니다.
+- 이는 `<Child />`가 `Child` 함수를 호출하는 것과 다르기 때문입니다. JSX 구문은 기본적으로 `React.createElement(Child)`를 호출합니다.
+- 리액트는 렌더링을 할 때가 되어서야 `Child`를 호출하기 시작할 겁니다.
+
+# 3. Child의 state를 변경하여 Child가 업데이트되는 때
+
+`Child`가 보여주는 `count` 값을 업데이트하기 위해 카운트 버튼을 눌러봅시다.
+클릭 시 `Child` 컴포넌트는 업데이트 단계에 오르고, `App` 컴포넌트는 변화가 없습니다.
+
+다이어그램에 따라 `Child`의 순서는 다음과 같습니다.
+
+1. ❌ Child의 Lazy initializers 실행
+
+2. ✅ Child의 렌더링 실행
+
+3. ✅ 리액트의 Child에 대한 DOM 업데이트
+
+4. ✅ Child의 Layout Effects Cleanup 실행
+
+5. ✅ Child의 Layout Effects 실행
+
+6. ✅ 브라우저의 Child에 대한 스크린 그리기
+
+7. ✅ Child의 Effects Cleanup 실행
+
+8. ✅ Child의 Effects 실행
+
+로그 순서를 확인해봅시다.
+
+1. Child: render start
+
+   - Child 렌더링을 시작합니다.
+
+2. Child: count = 1
+
+   - Child를 렌더링 중입니다.
+
+3. Child: render end
+
+   - Child의 렌더링이 종료됩니다.
+
+4. Child: useEffect(() => {}) cleanup
+
+   - Child의 의존성이 없는 useEffect cleanUp이 실행됩니다.
+
+5. Child: useEffect(() => {}, [count]) cleanup
+
+   - Child의 `count` 값에 의존성을 가지는 useEffect cleanup이 실행됩니다.
+   - 이 cleanup은 `count` 값이 변경되었기 때문에 실행됩니다.
+
+6. Child: useEffect(() => {})
+
+   - Child의 의존성이 없는 useEffect가 실행됩니다.
+
+7. Child: useEffect(() => {}, [count])
+   - Child의 `count` 값에 의존성을 가지는 useEffect가 실행됩니다.
+   - 이 cleanup은 `count` 값이 변경되었기 때문에 실행됩니다.
+
+# 4. App의 state를 변경하여 Child가 언마운트되는 때
+
+> 거의 다 왔습니다. 조금만 힘내세요😂
+
+`Child` 컴포넌트를 언마운트시키기 위해 `show child` 체크박스를 다시 한 번 클릭해봅시다.
+클릭 시 `Child` 컴포넌트는 언마운트 단계에 오르고, `App` 컴포넌트는 업데이트 단계를 가질 것입니다.
+
+다이어그램에 따라 `Child`의 순서는 다음과 같습니다.
+
+1. ❌ Child의 Lazy initializers 실행
+
+2. ❌ Child의 렌더링 실행
+
+3. ❌ 리액트의 Child에 대한 DOM 업데이트
+
+4. ✅ Child의 Layout Effects Cleanup 실행
+
+5. ❌ Child의 Layout Effects 실행
+
+6. ❌ 브라우저의 Child에 대한 스크린 그리기
+
+7. ✅ Child의 Effects Cleanup 실행
+
+8. ❌ Child의 Effects 실행
+
+그리고 `App`의 경우는 다음과 같습니다.
+
+1. ❌ App의 Lazy initializers 실행
+
+2. ✅ App의 렌더링 실행
+
+3. ✅ 리액트의 App에 대한 DOM 업데이트
+
+4. ✅ App의 Layout Effects Cleanup 실행
+
+5. ✅ App의 Layout Effects 실행
+
+6. ✅ 브라우저의 App에 대한 스크린 그리기
+
+7. ✅ App의 Effects Cleanup 실행
+
+8. ✅ App의 Effects 실행
+
+찍힌 로그 순서를 확인해봅시다.
+
+1. App: render start
+
+   - App 렌더링을 시작합니다.
+
+2. App: showChild = false
+
+   - App을 렌더링 중입니다.
+
+3. App: render end
+   - App의 렌더링이 종료됩니다.
+4. Child: useEffect(() => {}) cleanup
+
+   - Child의 의존성이 없는 useEffect cleanUp이 실행됩니다.
+
+5. Child: useEffect(() => {}, []) cleanup
+
+   - Child의 빈 의존성을 가지는 useEffect cleanup이 실행됩니다.
+   - 이 것은 Child 컴포넌트의 언마운트 단계이기 때문에 호출되며, 언마운트 단계에서는 해당 컴포넌트의 모든 useEffect cleanup이 호출됩니다.
+
+6. Child: useEffect(() => {}, [count]) cleanup
+
+   - Child의 `count` 값에 의존성을 가지는 useEffect cleanup이 실행됩니다.
+   - 이 역시 언마운트 단계에서는 모든 cleanup이 실행되므로 정상적인 실행입니다.
+
+7. App: useEffect(() => {}) cleanup
+
+   - App의 의존성이 없는 useEffect cleanUp이 실행됩니다.
+
+8. App: useEffect(() => {}, [showChild]) cleanup
+
+   - App의 `showChild` 값에 의존성을 가지는 useEffect cleanup이 실행됩니다.
+   - 이 cleanup은 `showChild` 값이 변경되었기 때문에 실행됩니다.
+
+9. App: useEffect(() => {})
+
+   - App의 의존성이 없는 useEffect가 실행됩니다.
+
+10. App: useEffect(() => {}, [showChild]);
+
+- App의 `showChild` 값에 의존성을 가지는 useEffect가 실행됩니다.
+- 이 cleanup은 `showChild`의 값이 변경되었기 때문에 실행됩니다.
+
+그리고 마지막으로, `App` 컴포넌트가 언마운트될 때, `App`의 모든 `useEffect cleanup`들이 실행되면서 라이프사이클이 종료됩니다.
+
+# TIL
+
+useEffect의 호출 순서와 시기는 개발할 때마다 매번 조금씩 헷갈리는 내용인 것 같습니다. 부모와 자식 중 누구의 useEffect가 먼저 실행되는지, 컴포넌트 내 여러 개의 useEffect 중 어떤 것이 제일 먼저 호출되는지 등 말이죠.
+
+이번 글을 번역하면서 부모와 자식 컴포넌트에서 어떤 순서로 렌더링과 useEffect cleanup, useEffect 콜백이 실행되는지 제대로 이해할 수 있었던 시간이었습니다.
+
+로그를 살펴보는 부분에서 비슷한 문구가 반복되다 보니 다소 가독성이 떨어집니다. cleanup과 useEffect가 실행되는 부분을 잘 구분하셔서 리액트 훅의 라이프사이클을 이해하는 데 도움이 되시길 바라겠습니다 :)
+
+# 참고 자료
+
+- [How lifecycle of react hooks component](https://blog.bhanuteja.dev/the-lifecycle-of-react-hooks-component)
+- [Hook Flow Diagram](https://github.com/donavon/hook-flow)
