@@ -20,11 +20,11 @@ jobs:
       - name: Install packages
         run: yarn install
 
-      - name: Generate sitemap
-        run: yarn postbuild
-
       - name: Build
         run: yarn build
+
+      - name: Generate sitemap
+        run: yarn postbuild
 
       - name: Ping sitemap to Google search console
         run: sh scripts/ping-sitemap.sh

@@ -1,53 +1,16 @@
-import React, { useCallback, useContext, useEffect, useReducer, useRef, useState } from 'react';
-import styled from 'styled-components';
-
+import { Divider } from 'components/Common/Divider';
 import { Typos } from 'components/Typo';
-
+import React from 'react';
 import { STYLES } from 'services/constants';
-import { useIntersectionObserver } from 'services/hooks';
 import { Article } from 'services/types';
-import { TitleIntersectCtx } from 'services/contexts';
+import styled from 'styled-components';
 
 type ArticleHeaderProps = Omit<Article, 'slug' | 'content'>;
 
-function intersectionReducer(state: boolean, action: { type: 'INTERSECT' | 'INIT' }) {
-  switch (action.type) {
-    case 'INTERSECT':
-      return true;
-    case 'INIT':
-      return false;
-    default:
-      return state;
-  }
-}
-
 const ArticleHeader = ({ title }: ArticleHeaderProps): JSX.Element => {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const { setTitle } = useContext(TitleIntersectCtx);
-  const [wasIntersected, dispatch] = useReducer(intersectionReducer, false);
-
-  // const observer = new IntersectionObserver(
-  //   ([{ isIntersecting }]) => {
-  //     if (isIntersecting) {
-  //       console.log('현재 교차');
-  //       dispatch({ type: 'INTERSECT' });
-  //       setTitle('');
-  //     } else if (wasIntersected) {
-  //       console.log('교차 끝');
-  //       dispatch({ type: 'INIT' });
-  //       setTitle?.(title);
-  //     }
-  //   },
-  //   {
-  //     root: null,
-  //     rootMargin: '0px',
-  //     threshold: 1.0,
-  //   },
-  // );
-
   return (
     <Wrapper>
-      <Title ref={titleRef}>{title}</Title>
+      <Title>{title}</Title>
     </Wrapper>
   );
 };
