@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next-remote-watch ./_articles",
+    "dev2": "next dev",
     "postbuild": "node ./scripts/generate-sitemap.js",
     "build": "next build",
     "start": "next start",

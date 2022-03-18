@@ -1,16 +1,21 @@
 import Header from 'components/Layout/Header';
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { STYLES } from 'services/constants';
+import { TitleIntersectCtx } from 'services/contexts';
 import styled from 'styled-components';
 import Footer from './Footer';
 
 const MainLayout: React.FC = ({ children }) => {
+  const [title, setTitle] = useState('');
+
   return (
     <>
       <Wrapper>
-        <Header />
-        <ContentsWrapper>{children}</ContentsWrapper>
-        <Footer />
+        <TitleIntersectCtx.Provider value={{ title, setTitle }}>
+          <Header />
+          <ContentsWrapper>{children}</ContentsWrapper>
+          <Footer />
+        </TitleIntersectCtx.Provider>
       </Wrapper>
     </>
   );
