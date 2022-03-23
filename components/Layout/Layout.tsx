@@ -25,13 +25,14 @@ export default MainLayout;
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr auto auto;
   min-height: 100vh;
 `;
 
 export const ContentsWrapper = styled.main`
   width: 100%;
   max-width: ${({ theme }) => theme.width['3xl']};
+
   margin: 100px auto 0;
 
   ${({ theme }) => theme.responsive.xl} {
