@@ -191,7 +191,7 @@ const AritlceStyleWrapper = styled.div`
 
   code {
     background: #e9ecef;
-    padding: 0.2rem 0;
+    padding: 0.2rem 0.3rem;
     margin-right: 0.2rem;
     border-radius: 3px;
 
